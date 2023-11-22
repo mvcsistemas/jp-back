@@ -1,19 +1,25 @@
 <?php
 
-namespace MVC\Models\DreItemGrupo;
+namespace MVC\Models\Aluno;
 
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MVC\Base\MVCModel;
-use YourAppRocks\EloquentUuid\Traits\HasUuid;
 
-class DreItemGrupo extends MVCModel {
+class Aluno extends MVCModel {
 
-    use HasUuid;
+    use HasFactory;
 
-    protected $table      = 'dre_item_grupo';
-    protected $primaryKey = 'id_dre_item_grupo';
-    protected $guarded    = ['id_dre_item_grupo'];
+    protected $table      = 'aluno';
+    protected $primaryKey = 'id';
+    protected $guarded    = [''];
     public    $timestamps = true;
+
+    public function index(): Builder
+    {
+        return $this->select('aluno.*', 'users.uuid')
+                    ->join('users', 'aluno.id', 'users.id');
+    }
 
     public function filter(Builder $query, array $params = []): Builder
     {
@@ -23,13 +29,13 @@ class DreItemGrupo extends MVCModel {
 
         return $query
             ->when($uuid, function ($query) use ($uuid) {
-                $query->where('dre_item_grupo.uuid', $uuid);
+                $query->where('aluno.uuid', $uuid);
             })
             ->when($tipo_ordenacao && $campo_ordenacao, function ($query) use ($tipo_ordenacao, $campo_ordenacao) {
                 $query->orderBy($campo_ordenacao, $tipo_ordenacao);
             })
             ->when(! $tipo_ordenacao || ! $campo_ordenacao, function ($query) {
-                $query->orderBy('dre_item_grupo.id_dre_item_grupo');
+                $query->orderByDesc('aluno.created_at');
             });
     }
 }

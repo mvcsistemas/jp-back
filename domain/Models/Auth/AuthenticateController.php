@@ -15,10 +15,10 @@ class AuthenticateController extends MVCController
 {
     public function login(AuthenticateRequest $request): mixed
     {
-        $credentials           = $request->only(['email', 'password']);
-        $credentials['active'] = 1;
-        $remember              = $request->remember;
-        $user                  = User::where('email', $credentials['email'])->first();
+        $credentials          = $request->only(['email', 'password']);
+        $credentials['ativo'] = 1;
+        $remember             = $request->remember;
+        $user                 = User::where('email', $credentials['email'])->first();
 
         if ($user && Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
@@ -45,7 +45,7 @@ class AuthenticateController extends MVCController
         $credentials = $request->only(['email', 'password']);
         $user        = User::where('email', $credentials['email'])->first();
 
-        if ($user && Hash::check($credentials['password'], $user->password)) {
+        if ($user && $user->ativo && Hash::check($credentials['password'], $user->password)) {
             return $user->createToken('token-api')->plainTextToken;
         }
 

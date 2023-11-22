@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('calendario_atividade', function (Blueprint $table) {
             $table->id()->index();
             $table->uuid()->index();
-            $table->foreignId('fk_id_calendario')->references('id')->on('calendario')->onDelete('cascade');
-            $table->foreignId('fk_id_atividade')->references('id')->on('atividade')->onDelete('cascade');
+            //$table->foreignId('fk_id_calendario')->references('id')->on('calendario')->onDelete('cascade');
+            //$table->foreignId('fk_id_atividade')->references('id')->on('atividade')->onDelete('cascade');
             $table->timestamps();
         });
     }

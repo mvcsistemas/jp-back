@@ -51,7 +51,7 @@ return new class extends Migration
             $table->smallInteger('frequencia_exercicio_fisico');
             $table->smallInteger('frequencia_atividade_fisica');
             $table->string('classificacao_alimentacao', 100);
-            $table->foreignId('fk_id_aluno')->references('id')->on('aluno')->onDelete('cascade');
+            //$table->foreignId('fk_id_aluno')->references('id')->on('aluno')->onDelete('cascade');
             $table->timestamps();
         });
     }

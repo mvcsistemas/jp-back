@@ -16,7 +16,7 @@ return new class extends Migration
             $table->uuid()->index();
             $table->string('nome', 255);
             $table->string('email', 255)->unique()->index();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('sexo', 2);
             $table->string('cpf', 11);
             $table->date('data_nascimento');

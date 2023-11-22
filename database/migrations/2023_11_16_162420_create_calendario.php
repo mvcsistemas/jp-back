@@ -17,7 +17,7 @@ return new class extends Migration
             $table->dateTime('data_hora_inicio');
             $table->dateTime('data_hora_fim');
             $table->string('observacao');
-            $table->foreignId('fk_id_aluno')->references('id')->on('aluno')->onDelete('cascade');
+            //$table->foreignId('fk_id_aluno')->references('id')->on('aluno')->onDelete('cascade');
             $table->timestamps();
         });
     }

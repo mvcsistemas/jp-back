@@ -1,20 +1,20 @@
 <?php
 
-namespace MVC\Models\CadTipoEntrada;
+namespace MVC\Models\Aluno;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use MVC\Base\MVCController;
 
-class CadTipoEntradaController extends MVCController {
+class AlunoController extends MVCController {
 
-    protected CadTipoEntradaService $service;
+    protected AlunoService $service;
     protected                       $resource;
 
-    public function __construct(CadTipoEntradaService $service)
+    public function __construct(AlunoService $service)
     {
         $this->service  = $service;
-        $this->resource = CadTipoEntradaResource::class;
+        $this->resource = AlunoResource::class;
     }
 
     public function index(): JsonResponse
@@ -31,14 +31,18 @@ class CadTipoEntradaController extends MVCController {
         return $this->responseBuilderRow($row);
     }
 
-    public function store(CadTipoEntradaRequest $request): JsonResponse
+    public function store(AlunoRequest $request): JsonResponse
     {
-        $row = $this->service->create($request->validated());
+        $data = transformUuidToId($request->validated(), [
+            ['tabela' => 'users', 'chave_atribuir' => 'id', 'campo_pesquisar' => 'id', 'uuid' => $request->uuid]
+        ]);
+
+        $row = $this->service->create($data);
 
         return $this->responseBuilderRow($row, true, 201);
     }
 
-    public function update($uuid, CadTipoEntradaRequest $request): JsonResponse
+    public function update($uuid, AlunoRequest $request): JsonResponse
     {
         $this->service->updateByUuid($uuid, $request->validated());
 

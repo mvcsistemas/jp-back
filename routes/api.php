@@ -52,11 +52,20 @@ Route::group([
     'prefix'    => 'portal',
     'middleware' => 'auth:sanctum'
 ], function () {
+
     Route::group([
         'prefix'    => 'user',
         'as'        => 'user.',
         'namespace' => 'User'
     ], function () {
         Route::apiResource('', 'UserController')->parameters(['' => 'uuid']);
+    });
+
+    Route::group([
+        'prefix'    => 'aluno',
+        'as'        => 'aluno.',
+        'namespace' => 'Aluno'
+    ], function () {
+        Route::apiResource('', 'AlunoController')->parameters(['' => 'uuid']);
     });
 });

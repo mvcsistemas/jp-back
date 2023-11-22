@@ -16,7 +16,9 @@ return new class extends Migration
             $table->uuid()->index();
             $table->string('nome_arquivo', 255);
             $table->string('caminho_arquivo', 255);
-            $table->foreignId('fk_id_aluno')->references('id')->on('aluno')->onDelete('cascade');
+            $table->unsignedInteger('fk_id_aluno');
+            $table->foreign('fk_id_aluno')->references('id')->on('aluno')->onDelete('cascade');
+            //$table->foreignId('fk_id_aluno')->references('id')->on('aluno')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -40,7 +40,7 @@ return new class extends Migration
             $table->string('ingestao_bebida_alcoolica_obs');
             $table->smallInteger('atividade_fisica');
             $table->string('atividade_fisica_obs');
-            $table->foreignId('fk_id_aluno')->references('id')->on('aluno')->onDelete('cascade');
+            //$table->foreignId('fk_id_aluno')->references('id')->on('aluno')->onDelete('cascade');
             $table->timestamps();
         });
     }

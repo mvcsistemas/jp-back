@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('funcionario', function (Blueprint $table) {
-            $table->id()->index();
+            $table->integer('id')->unsigned()->index();
             $table->boolean('admin')->default(1);
             $table->timestamps();
         });

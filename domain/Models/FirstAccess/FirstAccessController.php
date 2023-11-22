@@ -23,7 +23,7 @@ class FirstAccessController extends MVCController {
 
         $user = User::where('email', $request->email)->first();
 
-        if ( ! $user || ! $user->active) {
+        if ( ! $user || ! $user->ativo) {
             throw ValidationException::withMessages([
                 'email' => Lang::get('usuario_invalido')
             ]);
