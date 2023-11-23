@@ -12,8 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('aluno', function (Blueprint $table) {
-            $table->integer('id')->unsigned()->index();
-            $table->primary('id');
+            $table->integer('id')->unsigned()->primary()->index();
             $table->string('endereco', 255);
             $table->decimal('altura', 13, 2);
             $table->string('profissao', 100);
