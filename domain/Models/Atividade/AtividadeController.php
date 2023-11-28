@@ -1,20 +1,20 @@
 <?php
 
-namespace MVC\Models\Aluno;
+namespace MVC\Models\Atividade;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use MVC\Base\MVCController;
 
-class AlunoController extends MVCController {
+class AtividadeController extends MVCController {
 
-    protected AlunoService $service;
-    protected              $resource;
+    protected AtividadeService $service;
+    protected                  $resource;
 
-    public function __construct(AlunoService $service)
+    public function __construct(AtividadeService $service)
     {
         $this->service  = $service;
-        $this->resource = AlunoResource::class;
+        $this->resource = AtividadeResource::class;
     }
 
     public function index(): JsonResponse
@@ -31,20 +31,16 @@ class AlunoController extends MVCController {
         return $this->responseBuilderRow($row);
     }
 
-    public function store(AlunoRequest $request): JsonResponse
+    public function store(AtividadeRequest $request): JsonResponse
     {
-        $data = $this->transformData($request->validated());
-
-        $row = $this->service->create($data);
+        $row = $this->service->create($request->validated());
 
         return $this->responseBuilderRow($row, true, 201);
     }
 
-    public function update($uuid, AlunoRequest $request): JsonResponse
+    public function update($uuid, AtividadeRequest $request): JsonResponse
     {
-        $data = $this->transformData($request->validated());
-
-        $this->service->updateByUuid($uuid, $data);
+        $this->service->updateByUuid($uuid, $request->validated());
 
         return $this->responseBuilderRow([], false, 204);
     }
@@ -61,12 +57,5 @@ class AlunoController extends MVCController {
         $rows = $this->service->lookup($request->all());
 
         return $this->responseBuilderWithoutPagination($rows, false);
-    }
-
-    public function transformData (array $data): array
-    {
-        return transformUuidToId($data, [
-            ['tabela' => 'users', 'chave_atribuir' => 'id', 'campo_pesquisar' => 'id', 'uuid' => $data['user_uuid']]
-        ]);
     }
 }

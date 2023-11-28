@@ -1,20 +1,20 @@
 <?php
 
-namespace MVC\Models\Aluno;
+namespace MVC\Models\CalendarioAtividade;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use MVC\Base\MVCController;
 
-class AlunoController extends MVCController {
+class CalendarioAtividadeController extends MVCController {
 
-    protected AlunoService $service;
-    protected              $resource;
+    protected CalendarioAtividadeService $service;
+    protected                            $resource;
 
-    public function __construct(AlunoService $service)
+    public function __construct(CalendarioAtividadeService $service)
     {
         $this->service  = $service;
-        $this->resource = AlunoResource::class;
+        $this->resource = CalendarioAtividadeResource::class;
     }
 
     public function index(): JsonResponse
@@ -31,7 +31,7 @@ class AlunoController extends MVCController {
         return $this->responseBuilderRow($row);
     }
 
-    public function store(AlunoRequest $request): JsonResponse
+    public function store(CalendarioAtividadeRequest $request): JsonResponse
     {
         $data = $this->transformData($request->validated());
 
@@ -40,7 +40,7 @@ class AlunoController extends MVCController {
         return $this->responseBuilderRow($row, true, 201);
     }
 
-    public function update($uuid, AlunoRequest $request): JsonResponse
+    public function update($uuid, CalendarioAtividadeRequest $request): JsonResponse
     {
         $data = $this->transformData($request->validated());
 
@@ -66,7 +66,8 @@ class AlunoController extends MVCController {
     public function transformData (array $data): array
     {
         return transformUuidToId($data, [
-            ['tabela' => 'users', 'chave_atribuir' => 'id', 'campo_pesquisar' => 'id', 'uuid' => $data['user_uuid']]
+            ['tabela' => 'calendario', 'chave_atribuir' => 'fk_id_calendario', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_calendario']],
+            ['tabela' => 'atividade', 'chave_atribuir' => 'fk_id_atividade', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_atividade']],
         ]);
     }
 }

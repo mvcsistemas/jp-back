@@ -1,6 +1,6 @@
 <?php
 
-namespace MVC\Models\Aluno;
+namespace MVC\Models\Funcionario;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,11 +8,11 @@ use MVC\Base\MVCModel;
 use MVC\Models\User\User;
 use YourAppRocks\EloquentUuid\Traits\HasUuid;
 
-class Aluno extends MVCModel {
+class Funcionario extends MVCModel {
 
     use HasFactory, HasUuid;
 
-    protected $table      = 'aluno';
+    protected $table      = 'funcionario';
     protected $primaryKey = 'id';
     protected $guarded    = [''];
     public    $timestamps = true;
@@ -28,8 +28,8 @@ class Aluno extends MVCModel {
 
     public function index(): Builder
     {
-        return $this->select('aluno.*', 'users.uuid as user_uuid')
-                    ->join('users', 'aluno.id', 'users.id');
+        return $this->select('funcionario.*', 'users.uuid as user_uuid')
+                    ->join('users', 'funcionario.id', 'users.id');
     }
 
     public function filter(Builder $query, array $params = []): Builder
@@ -40,7 +40,7 @@ class Aluno extends MVCModel {
 
         return $query
             ->when($uuid, function ($query) use ($uuid) {
-                $query->where('aluno.uuid', $uuid);
+                $query->where('funcionario.uuid', $uuid);
             })
             ->when($tipo_ordenacao && $campo_ordenacao, function ($query) use ($tipo_ordenacao, $campo_ordenacao) {
                 $query->orderBy($campo_ordenacao, $tipo_ordenacao);

@@ -10,6 +10,7 @@ class AlunoResource extends JsonResource {
     {
         $retorno = [
             'uuid'               => $this->uuid,
+            'user_uuid'          => $this->user_uuid,
             'endereco'           => $this->endereco,
             'altura'             => $this->altura,
             'profissao'          => $this->profissao,

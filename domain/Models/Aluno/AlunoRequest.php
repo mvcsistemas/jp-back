@@ -10,7 +10,8 @@ class AlunoRequest extends MVCRequest
     public function rules()
     {
         return [
-            'uuid'               => 'required',
+            'uuid'               => '',
+            'user_uuid'          => 'required',
             'endereco'           => 'required',
             'altura'             => 'required',
             'profissao'          => 'required',
@@ -23,7 +24,7 @@ class AlunoRequest extends MVCRequest
     public function messages()
     {
         return [
-            'uuid.required'               => 'O campo Uuid Empresa é obrigatório.',
+            'user_uuid.required'          => 'O campo Uuid user é obrigatório.',
             'endereco.required'           => 'O campo Endereço é obrigatório.',
             'altura.required'             => 'O campo Altura é obrigatório.',
             'profissao.required'          => 'O campo Profissão é obrigatório.',

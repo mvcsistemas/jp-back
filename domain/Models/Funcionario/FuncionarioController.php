@@ -1,20 +1,20 @@
 <?php
 
-namespace MVC\Models\Aluno;
+namespace MVC\Models\Funcionario;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use MVC\Base\MVCController;
 
-class AlunoController extends MVCController {
+class FuncionarioController extends MVCController {
 
-    protected AlunoService $service;
-    protected              $resource;
+    protected FuncionarioService $service;
+    protected                    $resource;
 
-    public function __construct(AlunoService $service)
+    public function __construct(FuncionarioService $service)
     {
         $this->service  = $service;
-        $this->resource = AlunoResource::class;
+        $this->resource = FuncionarioResource::class;
     }
 
     public function index(): JsonResponse
@@ -31,7 +31,7 @@ class AlunoController extends MVCController {
         return $this->responseBuilderRow($row);
     }
 
-    public function store(AlunoRequest $request): JsonResponse
+    public function store(FuncionarioRequest $request): JsonResponse
     {
         $data = $this->transformData($request->validated());
 
@@ -40,7 +40,7 @@ class AlunoController extends MVCController {
         return $this->responseBuilderRow($row, true, 201);
     }
 
-    public function update($uuid, AlunoRequest $request): JsonResponse
+    public function update($uuid, FuncionarioRequest $request): JsonResponse
     {
         $data = $this->transformData($request->validated());
 

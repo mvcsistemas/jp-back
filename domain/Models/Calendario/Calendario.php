@@ -1,6 +1,6 @@
 <?php
 
-namespace MVC\Models\Aluno;
+namespace MVC\Models\Calendario;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -8,45 +8,40 @@ use MVC\Base\MVCModel;
 use MVC\Models\User\User;
 use YourAppRocks\EloquentUuid\Traits\HasUuid;
 
-class Aluno extends MVCModel {
+class Calendario extends MVCModel {
 
     use HasFactory, HasUuid;
 
-    protected $table      = 'aluno';
+    protected $table      = 'calendario';
     protected $primaryKey = 'id';
     protected $guarded    = [''];
     public    $timestamps = true;
 
-    public static function boot()
-    {
-        parent::boot();
-
-        self::deleted(function ($model) {
-            User::find($model->id)->delete();
-        });
-    }
-
     public function index(): Builder
     {
-        return $this->select('aluno.*', 'users.uuid as user_uuid')
-                    ->join('users', 'aluno.id', 'users.id');
+        return $this->select('calendario.*')
+                    ->join('aluno', 'aluno.id', 'calendario.fk_id_aluno');
     }
 
     public function filter(Builder $query, array $params = []): Builder
     {
         $uuid            = (string)($params['uuid'] ?? '');
+        $fk_uuid_aluno   = (string)($params['fk_uuid_aluno'] ?? '');
         $tipo_ordenacao  = (string)($params['tipo_ordenacao'] ?? '');
         $campo_ordenacao = (string)($params['campo_ordenacao'] ?? '');
 
         return $query
             ->when($uuid, function ($query) use ($uuid) {
-                $query->where('aluno.uuid', $uuid);
+                $query->where('calendario.uuid', $uuid);
+            })
+            ->when($fk_uuid_aluno, function ($query) use ($fk_uuid_aluno) {
+                $query->where('aluno.uuid', $fk_uuid_aluno);
             })
             ->when($tipo_ordenacao && $campo_ordenacao, function ($query) use ($tipo_ordenacao, $campo_ordenacao) {
                 $query->orderBy($campo_ordenacao, $tipo_ordenacao);
             })
             ->when(! $tipo_ordenacao || ! $campo_ordenacao, function ($query) {
-                $query->orderByDesc('users.nome');
+                $query->orderByDesc('calendario.data');
             });
     }
 }

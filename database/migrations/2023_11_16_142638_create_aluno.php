@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('aluno', function (Blueprint $table) {
             $table->integer('id')->unsigned()->primary()->index();
+            $table->uuid()->index();
             $table->string('endereco', 255);
             $table->decimal('altura', 13, 2);
             $table->string('profissao', 100);

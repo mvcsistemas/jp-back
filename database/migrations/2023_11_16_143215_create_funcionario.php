@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('funcionario', function (Blueprint $table) {
             $table->integer('id')->unsigned()->primary()->index();
+            $table->uuid()->index();
             $table->boolean('admin')->default(1);
             $table->timestamps();
         });

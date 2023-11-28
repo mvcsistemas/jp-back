@@ -68,4 +68,37 @@ Route::group([
     ], function () {
         Route::apiResource('', 'AlunoController')->parameters(['' => 'uuid']);
     });
+
+    Route::group([
+        'prefix'    => 'funcionario',
+        'as'        => 'funcionario.',
+        'namespace' => 'Funcionario'
+    ], function () {
+        Route::apiResource('', 'FuncionarioController')->parameters(['' => 'uuid']);
+    });
+
+    Route::group([
+        'prefix'    => 'calendario',
+        'as'        => 'calendario.',
+        'namespace' => 'Calendario'
+    ], function () {
+        Route::apiResource('', 'CalendarioController')->parameters(['' => 'uuid']);
+    });
+
+    Route::group([
+        'prefix'    => 'atividade',
+        'as'        => 'atividade.',
+        'namespace' => 'Atividade'
+    ], function () {
+        Route::apiResource('', 'AtividadeController')->parameters(['' => 'uuid']);
+    });
+
+
+    Route::group([
+        'prefix'    => 'calendario-atividade',
+        'as'        => 'calendario-atividade.',
+        'namespace' => 'CalendarioAtividade'
+    ], function () {
+        Route::apiResource('', 'CalendarioAtividadeController')->parameters(['' => 'uuid']);
+    });
 });
