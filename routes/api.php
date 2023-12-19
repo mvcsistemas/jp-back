@@ -28,22 +28,22 @@ Route::group([
 });
 
 Route::group([
-    'as'        => 'password.',
+    'as'        => 'senha.',
     'namespace' => 'ResetPassword'
 ], function () {
     //Reset Password
-    Route::post('forgot-password', 'ResetPasswordController@forgotPassword')->name('forgot');
-    Route::post('reset-password', 'ResetPasswordController@resetPassword')->name('reset');
+    Route::post('esqueci-minha-senha', 'ResetPasswordController@forgotPassword')->name('forgot');
+    Route::post('redefinir-senha', 'ResetPasswordController@resetPassword')->name('reset');
 });
 
 Route::group([
-    'prefix'    => 'first-access',
-    'as'        => 'first-acess.',
+    'prefix'    => 'primeiro-acesso',
+    'as'        => 'primeiro-acesso.',
     'namespace' => 'FirstAccess'
 ], function () {
-    Route::post('generate-otp', 'FirstAccessController@generate')->name('generate-otp');
-    Route::post('check-otp', 'FirstAccessController@checkCodeForNewPassword')->name('check-otp');
-    Route::post('create-password', 'FirstAccessController@createPassword')->name('create-password');
+    Route::post('gera-otp', 'FirstAccessController@generate')->name('generate-otp');
+    Route::post('verifica-otp', 'FirstAccessController@checkCodeForNewPassword')->name('check-otp');
+    Route::post('criar-senha', 'FirstAccessController@createPassword')->name('create-password');
 });
 
 
