@@ -54,8 +54,8 @@ Route::group([
 ], function () {
 
     Route::group([
-        'prefix'    => 'user',
-        'as'        => 'user.',
+        'prefix'    => 'usuario',
+        'as'        => 'usuario.',
         'namespace' => 'User'
     ], function () {
         Route::apiResource('', 'UserController')->parameters(['' => 'uuid']);
@@ -93,12 +93,27 @@ Route::group([
         Route::apiResource('', 'AtividadeController')->parameters(['' => 'uuid']);
     });
 
-
     Route::group([
         'prefix'    => 'calendario-atividade',
         'as'        => 'calendario-atividade.',
         'namespace' => 'CalendarioAtividade'
     ], function () {
         Route::apiResource('', 'CalendarioAtividadeController')->parameters(['' => 'uuid']);
+    });
+
+    Route::group([
+        'prefix'    => 'ficha-anamnese',
+        'as'        => 'ficha-anamnese.',
+        'namespace' => 'FichaAnamnese'
+    ], function () {
+        Route::apiResource('', 'FichaAnamneseController')->parameters(['' => 'uuid']);
+    });
+
+    Route::group([
+        'prefix'    => 'feedback-semanal',
+        'as'        => 'feedback-semanal.',
+        'namespace' => 'FeedbackSemanal'
+    ], function () {
+        Route::apiResource('', 'FeedbackSemanalController')->parameters(['' => 'uuid']);
     });
 });
