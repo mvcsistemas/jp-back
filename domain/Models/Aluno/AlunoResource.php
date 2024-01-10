@@ -9,8 +9,14 @@ class AlunoResource extends JsonResource {
     public function toArray($request)
     {
         $retorno = [
-            'uuid'               => $this->uuid,
-            'user_uuid'          => $this->user_uuid,
+            'uuid'               => $this->user_uuid,
+            'nome'               => $this->nome,
+            'email'              => $this->email,
+            'sexo'               => $this->sexo,
+            'cpf'                => $this->cpf,
+            'data_nascimento'    => $this->data_nascimento,
+            'telefone'           => $this->telefone,
+            'ativo'              => $this->ativo,
             'endereco'           => $this->endereco,
             'altura'             => $this->altura,
             'profissao'          => $this->profissao,

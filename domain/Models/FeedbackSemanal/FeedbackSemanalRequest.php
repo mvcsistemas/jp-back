@@ -37,7 +37,7 @@ class FeedbackSemanalRequest extends MVCRequest
             'sono_obs'                      => 'required',
             'tabagismo'                     => 'required',
             'tabagismo_obs'                 => 'required',
-            'fk_id_aluno'                   => 'required'
+            'fk_uuid_user'                  => 'required'
         ];
     }
 

@@ -49,7 +49,8 @@ function transformUuidToId(array $request, array $data)
 
         $request[$item['chave_atribuir']] = \DB::table($item['tabela'])
                                                ->where('uuid', $item['uuid'])
-                                               ->first()->$campo_pesquisar;
+                                               ->first()
+                                               ->$campo_pesquisar;
     }
 
     return $request;

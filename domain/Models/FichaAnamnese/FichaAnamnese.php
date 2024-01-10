@@ -17,6 +17,12 @@ class FichaAnamnese extends MVCModel {
     protected $guarded    = [''];
     public    $timestamps = true;
 
+    public function index (): Builder
+    {
+        return $this->select('ficha_anamnese.*', 'aluno.uuid as fk_uuid_user')
+                    ->join('users as aluno', 'aluno.id', 'ficha_anamnese.fk_id_aluno');
+    }
+
     public function filter(Builder $query, array $params = []): Builder
     {
         $uuid            = (string)($params['uuid'] ?? '');

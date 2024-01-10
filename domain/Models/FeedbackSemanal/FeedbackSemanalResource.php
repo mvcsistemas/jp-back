@@ -36,7 +36,7 @@ class FeedbackSemanalResource extends JsonResource {
             'sono_obs'                      => $this->sono_obs,
             'tabagismo'                     => $this->tabagismo,
             'tabagismo_obs'                 => $this->tabagismo_obs,
-            'fk_id_aluno'                   => $this->fk_id_aluno,
+            'fk_uuid_user'                  => $this->fk_uuid_user,
         ];
 
         return $retorno;

@@ -66,7 +66,7 @@ class FichaAnamneseController extends MVCController {
     public function transformData (array $data): array
     {
         return transformUuidToId($data, [
-            ['tabela' => 'users', 'chave_atribuir' => 'fk_id_aluno', 'campo_pesquisar' => 'id', 'uuid' => $data['user_uuid']]
+            ['tabela' => 'users', 'chave_atribuir' => 'fk_id_aluno', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_user']]
         ]);
     }
 }

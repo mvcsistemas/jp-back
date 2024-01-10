@@ -48,7 +48,7 @@ class FichaAnamneseRequest extends MVCRequest
             'solucao_musculacao'                => 'required',
             'suplementacao'                     => 'required',
             'tempo_musculacao'                  => 'required',
-            'fk_id_aluno'                       => 'required',
+            'fk_uuid_user'                      => 'required',
         ];
     }
 
@@ -70,7 +70,7 @@ class FichaAnamneseRequest extends MVCRequest
             'disposicao_diaria_obs.required'             => 'O campo Disposição Diária Observação é obrigatório.',
             'drogas_ilicitas.required'                   => 'O campo Drogas Ilícitas Observação é obrigatório.',
             'drogas_ilicitas_obs.required'               => 'O campo Drogas Ilícitas Observação é obrigatório.',
-            'esforco_fisico_desejado.required'           => 'O campo Esforço Físico Desejado Observação é obrigatório.',
+            'esforco_fisico_desejado.required'           => 'O campo Esforço Físico Desejado é obrigatório.',
             'estetica_corporal.required'                 => 'O campo Estética Corporal  é obrigatório.',
             'fisico_desejado.required'                   => 'O campo Físico Desejado é obrigatório.',
             'fisico_desejado_obs.required'               => 'O campo Físico Desejado Observação é obrigatório.',
@@ -92,7 +92,7 @@ class FichaAnamneseRequest extends MVCRequest
             'solucao_musculacao.required'                => 'O campo Solução Musculação é obrigatório.',
             'suplementacao.required'                     => 'O campo Suplementação é obrigatório.',
             'tempo_musculacao.required'                  => 'O campo Tempo Musculação é obrigatório.',
-            'fk_id_aluno.required'                       => 'O campo Aluno é obrigatório.',
+            'fk_uuid_user.required'                     => 'O campo Aluno é obrigatório.',
         ];
     }
 }

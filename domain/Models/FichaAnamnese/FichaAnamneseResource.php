@@ -47,7 +47,7 @@ class FichaAnamneseResource extends JsonResource {
             'solucao_musculacao'                => $this->solucao_musculacao,
             'suplementacao'                     => $this->suplementacao,
             'tempo_musculacao'                  => $this->tempo_musculacao,
-            'fk_id_aluno'                       => $this->fk_id_aluno,
+            'fk_uuid_user'                      => $this->fk_uuid_user,
         ];
 
         return $retorno;

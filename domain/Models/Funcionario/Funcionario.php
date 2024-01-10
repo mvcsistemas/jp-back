@@ -28,7 +28,7 @@ class Funcionario extends MVCModel {
 
     public function index(): Builder
     {
-        return $this->select('funcionario.*', 'users.uuid as user_uuid')
+        return $this->select('funcionario.*', 'users.uuid as user_uuid', 'users.*')
                     ->join('users', 'funcionario.id', 'users.id');
     }
 

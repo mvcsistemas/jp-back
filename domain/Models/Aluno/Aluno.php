@@ -28,7 +28,7 @@ class Aluno extends MVCModel {
 
     public function index(): Builder
     {
-        return $this->select('aluno.*', 'users.uuid as user_uuid')
+        return $this->select('aluno.*', 'users.uuid as user_uuid', 'users.*')
                     ->join('users', 'aluno.id', 'users.id');
     }
 
