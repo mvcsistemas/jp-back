@@ -49,18 +49,13 @@ class ArquivosController extends MVCController {
         return $this->responseBuilderRow(['Arquivos salvos com sucesso!'], false, 201);
     }
 
-    public function update($uuid, ArquivosRequest $request): JsonResponse
-    {
-        $data = $this->transformData($request->validated());
-
-        $this->service->updateByUuid($uuid, $data);
-
-        return $this->responseBuilderRow([], false, 204);
-    }
-
     public function destroy($uuid): JsonResponse
     {
+        $caminho_arquivo = $this->service->retornaCaminhoArquivo($uuid);
+
         $this->service->deleteByUuid($uuid);
+
+        Storage::delete($caminho_arquivo);
 
         return $this->responseBuilderRow([], false, 204);
     }

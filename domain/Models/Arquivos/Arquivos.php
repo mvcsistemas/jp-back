@@ -40,7 +40,7 @@ class Arquivos extends MVCModel {
                 $query->orderBy($campo_ordenacao, $tipo_ordenacao);
             })
             ->when(! $tipo_ordenacao || ! $campo_ordenacao, function ($query) {
-                $query->orderByDesc('arquivos.data');
+                $query->orderByDesc('arquivos.id');
             });
     }
 }

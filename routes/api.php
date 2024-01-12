@@ -122,6 +122,6 @@ Route::group([
         'as'        => 'arquivos.',
         'namespace' => 'Arquivos'
     ], function () {
-        Route::apiResource('', 'ArquivosController')->parameters(['' => 'uuid']);
+        Route::apiResource('', 'ArquivosController')->parameters(['' => 'uuid'])->except(['update']);
     });
 });

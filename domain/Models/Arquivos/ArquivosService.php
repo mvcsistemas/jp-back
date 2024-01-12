@@ -12,4 +12,9 @@ class ArquivosService extends MVCService {
     {
         $this->model = $model;
     }
+
+    public function retornaCaminhoArquivo(string $uuid): string
+    {
+        return $this->model->findByUuid($uuid)->caminho_arquivo;
+    }
 }
