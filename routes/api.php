@@ -116,4 +116,12 @@ Route::group([
     ], function () {
         Route::apiResource('', 'FeedbackSemanalController')->parameters(['' => 'uuid']);
     });
+
+    Route::group([
+        'prefix'    => 'arquivos',
+        'as'        => 'arquivos.',
+        'namespace' => 'Arquivos'
+    ], function () {
+        Route::apiResource('', 'ArquivosController')->parameters(['' => 'uuid']);
+    });
 });

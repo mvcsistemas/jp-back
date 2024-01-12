@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('arquivos', function (Blueprint $table) {
             $table->id()->index();
             $table->uuid()->index();
-            $table->string('caminho_arquivo');
+            $table->string('nome_arquivo', 255);
+            $table->string('caminho_arquivo', 255);
             $table->unsignedInteger('fk_id_funcionario');
             $table->foreign('fk_id_funcionario')->references('id')->on('funcionario')->onDelete('cascade');
             $table->timestamps();

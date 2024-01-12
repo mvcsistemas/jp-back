@@ -4,6 +4,7 @@ namespace MVC\Models\Arquivos;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 use MVC\Base\MVCController;
 
 class ArquivosController extends MVCController {
@@ -34,6 +35,10 @@ class ArquivosController extends MVCController {
     public function store(ArquivosRequest $request): JsonResponse
     {
         $data = $this->transformData($request->validated());
+
+        dd($data['arquivos']->getClientOriginalName());
+
+        $teste = Storage::put('arquivos/' . $data['fk_uuid_funcionario'], $data['arquivos']);
 
         $row = $this->service->create($data);
 
