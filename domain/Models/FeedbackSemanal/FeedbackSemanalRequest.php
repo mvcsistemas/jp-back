@@ -37,7 +37,7 @@ class FeedbackSemanalRequest extends MVCRequest
             'sono_obs'                      => 'required',
             'tabagismo'                     => 'required',
             'tabagismo_obs'                 => 'required',
-            'fk_uuid_user'                  => 'required'
+            'fk_uuid_aluno'                 => 'required'
         ];
     }
 
@@ -69,7 +69,7 @@ class FeedbackSemanalRequest extends MVCRequest
             'sono_obs.required'                      => 'O campo Sono Observação é obrigatório.',
             'tabagismo.required'                     => 'O campo Tabagismo é obrigatório.',
             'tabagismo_obs.required'                 => 'O campo Tabagismo Observação é obrigatório.',
-            'fk_id_aluno.required'                   => 'O campo Aluno é obrigatório.'
+            'fk_uuid_aluno.required'                 => 'O campo Aluno é obrigatório.'
         ];
     }
 }

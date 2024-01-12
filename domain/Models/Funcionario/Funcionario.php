@@ -49,4 +49,14 @@ class Funcionario extends MVCModel {
                 $query->orderByDesc('users.nome');
             });
     }
+
+    /**
+     * Sobrescreve o método para evitar a geração automática do UUID (pega do cadastro original do usuário).
+     *
+     * @return string|null
+     */
+    protected function generateUuid(): ?string
+    {
+        return User::find($this->id)->uuid;
+    }
 }

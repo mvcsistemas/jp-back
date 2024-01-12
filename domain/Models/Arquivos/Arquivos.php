@@ -18,7 +18,7 @@ class Arquivos extends MVCModel {
 
     public function index(): Builder
     {
-        return $this->select('arquivos.*')
+        return $this->select('arquivos.*', 'funcionario.uuid as fk_uuid_funcionario')
                     ->join('funcionario', 'funcionario.id', 'arquivos.fk_id_funcionario');
     }
 

@@ -19,7 +19,7 @@ class FichaAnamnese extends MVCModel {
 
     public function index (): Builder
     {
-        return $this->select('ficha_anamnese.*', 'aluno.uuid as fk_uuid_user')
+        return $this->select('ficha_anamnese.*', 'aluno.uuid as fk_uuid_aluno')
                     ->join('users as aluno', 'aluno.id', 'ficha_anamnese.fk_id_aluno');
     }
 

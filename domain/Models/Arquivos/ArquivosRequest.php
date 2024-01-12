@@ -12,7 +12,7 @@ class ArquivosRequest extends MVCRequest
         return [
             'uuid'                => '',
             'caminho_arquivo'     => '',
-            'arquivos'            => 'required',
+            'arquivos'            => 'required|array',
             'arquivos.*'          => 'file',
             'fk_uuid_funcionario' => 'required',
         ];
@@ -22,6 +22,7 @@ class ArquivosRequest extends MVCRequest
     {
         return [
             'arquivos.required'            => 'O campo Arquivos é obrigatório.',
+            'arquivos.array'               => 'O campo Arquivos deve ser um array.',
             'arquivos.file'                => 'Não contém um arquivo válido.',
             'fk_uuid_funcionario.required' => 'O campo Funcionário é obrigatório.'
         ];

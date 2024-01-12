@@ -36,13 +36,17 @@ class ArquivosController extends MVCController {
     {
         $data = $this->transformData($request->validated());
 
-        dd($data['arquivos']->getClientOriginalName());
+        foreach ($data['arquivos'] as $arquivo) {
+            $payload = [];
 
-        $teste = Storage::put('arquivos/' . $data['fk_uuid_funcionario'], $data['arquivos']);
+            $payload['fk_id_funcionario'] = $data['fk_id_funcionario'];
+            $payload['nome_arquivo']      = $arquivo->getClientOriginalName();
+            $payload['caminho_arquivo']   = Storage::put('arquivos/' . $data['fk_uuid_funcionario'], $arquivo);
 
-        $row = $this->service->create($data);
+            $this->service->create($payload);
+        }
 
-        return $this->responseBuilderRow($row, true, 201);
+        return $this->responseBuilderRow(['Arquivos salvos com sucesso!'], false, 201);
     }
 
     public function update($uuid, ArquivosRequest $request): JsonResponse

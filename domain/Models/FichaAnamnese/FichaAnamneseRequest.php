@@ -48,7 +48,7 @@ class FichaAnamneseRequest extends MVCRequest
             'solucao_musculacao'                => 'required',
             'suplementacao'                     => 'required',
             'tempo_musculacao'                  => 'required',
-            'fk_uuid_user'                      => 'required',
+            'fk_uuid_aluno'                     => 'required',
         ];
     }
 
@@ -92,7 +92,7 @@ class FichaAnamneseRequest extends MVCRequest
             'solucao_musculacao.required'                => 'O campo Solução Musculação é obrigatório.',
             'suplementacao.required'                     => 'O campo Suplementação é obrigatório.',
             'tempo_musculacao.required'                  => 'O campo Tempo Musculação é obrigatório.',
-            'fk_uuid_user.required'                     => 'O campo Aluno é obrigatório.',
+            'fk_uuid_aluno.required'                     => 'O campo Aluno é obrigatório.',
         ];
     }
 }
