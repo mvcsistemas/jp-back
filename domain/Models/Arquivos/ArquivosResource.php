@@ -13,6 +13,7 @@ class ArquivosResource extends JsonResource {
             'nome_arquivo'        => $this->nome_arquivo,
             'caminho_arquivo'     => $this->caminho_arquivo,
             'fk_uuid_funcionario' => $this->fk_uuid_funcionario,
+            'fk_uuid_aluno'       => $this->fk_uuid_aluno,
         ];
 
         return $retorno;

@@ -1,20 +1,20 @@
 <?php
 
-namespace MVC\Models\Calendario;
+namespace MVC\Models\Evento;
 
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use MVC\Base\MVCController;
 
-class CalendarioController extends MVCController {
+class EventoController extends MVCController {
 
-    protected CalendarioService $service;
-    protected                   $resource;
+    protected EventoService $service;
+    protected               $resource;
 
-    public function __construct(CalendarioService $service)
+    public function __construct(EventoService $service)
     {
         $this->service  = $service;
-        $this->resource = CalendarioResource::class;
+        $this->resource = EventoResource::class;
     }
 
     public function index(): JsonResponse
@@ -31,7 +31,7 @@ class CalendarioController extends MVCController {
         return $this->responseBuilderRow($row);
     }
 
-    public function store(CalendarioRequest $request): JsonResponse
+    public function store(EventoRequest $request): JsonResponse
     {
         $data = $this->transformData($request->validated());
 
@@ -40,7 +40,7 @@ class CalendarioController extends MVCController {
         return $this->responseBuilderRow($row, true, 201);
     }
 
-    public function update($uuid, CalendarioRequest $request): JsonResponse
+    public function update($uuid, EventoRequest $request): JsonResponse
     {
         $data = $this->transformData($request->validated());
 
@@ -56,17 +56,10 @@ class CalendarioController extends MVCController {
         return $this->responseBuilderRow([], false, 204);
     }
 
-    public function lookup(Request $request): JsonResponse
-    {
-        $rows = $this->service->lookup($request->all());
-
-        return $this->responseBuilderWithoutPagination($rows, false);
-    }
-
     public function transformData (array $data): array
     {
         return transformUuidToId($data, [
-            ['tabela' => 'aluno', 'chave_atribuir' => 'fk_id_aluno', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_aluno']]
+            ['tabela' => 'aluno', 'chave_atribuir' => 'fk_id_aluno', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_aluno']],
         ]);
     }
 }

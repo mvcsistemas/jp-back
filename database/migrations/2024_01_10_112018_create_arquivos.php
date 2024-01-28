@@ -18,6 +18,8 @@ return new class extends Migration
             $table->string('caminho_arquivo', 255);
             $table->unsignedInteger('fk_id_funcionario');
             $table->foreign('fk_id_funcionario')->references('id')->on('funcionario')->onDelete('cascade');
+            $table->unsignedInteger('fk_id_aluno');
+            $table->foreign('fk_id_aluno')->references('id')->on('aluno')->onDelete('cascade');
             $table->timestamps();
         });
     }

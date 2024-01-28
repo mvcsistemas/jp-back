@@ -40,8 +40,9 @@ class ArquivosController extends MVCController {
             $payload = [];
 
             $payload['fk_id_funcionario'] = $data['fk_id_funcionario'];
+            $payload['fk_id_aluno']       = $data['fk_id_aluno'];
             $payload['nome_arquivo']      = $arquivo->getClientOriginalName();
-            $payload['caminho_arquivo']   = Storage::put('arquivos/' . $data['fk_uuid_funcionario'], $arquivo);
+            $payload['caminho_arquivo']   = Storage::put('arquivos/' . $data['fk_uuid_funcionario'] . '/' . $data['fk_uuid_aluno'], $arquivo);
 
             $this->service->create($payload);
         }
@@ -70,7 +71,8 @@ class ArquivosController extends MVCController {
     public function transformData (array $data): array
     {
         return transformUuidToId($data, [
-            ['tabela' => 'funcionario', 'chave_atribuir' => 'fk_id_funcionario', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_funcionario']]
+            ['tabela' => 'funcionario', 'chave_atribuir' => 'fk_id_funcionario', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_funcionario']],
+            ['tabela' => 'aluno', 'chave_atribuir' => 'fk_id_aluno', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_aluno']],
         ]);
     }
 }

@@ -15,6 +15,7 @@ class ArquivosRequest extends MVCRequest
             'arquivos'            => 'required|array',
             'arquivos.*'          => 'file',
             'fk_uuid_funcionario' => 'required',
+            'fk_uuid_aluno'       => 'required',
         ];
     }
 
@@ -24,7 +25,8 @@ class ArquivosRequest extends MVCRequest
             'arquivos.required'            => 'O campo Arquivos é obrigatório.',
             'arquivos.array'               => 'O campo Arquivos deve ser um array.',
             'arquivos.file'                => 'Não contém um arquivo válido.',
-            'fk_uuid_funcionario.required' => 'O campo Funcionário é obrigatório.'
+            'fk_uuid_funcionario.required' => 'O campo Funcionário é obrigatório.',
+            'fk_uuid_aluno.required'       => 'O campo Aluno é obrigatório.'
         ];
     }
 }

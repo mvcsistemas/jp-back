@@ -11,10 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('atividade', function (Blueprint $table) {
+        Schema::create('evento', function (Blueprint $table) {
             $table->id()->index();
             $table->uuid()->index();
-            $table->string('descricao', 255);
+            $table->date('data');
+            $table->string('titulo');
+            $table->unsignedInteger('fk_id_aluno')->nullable();
+            $table->foreign('fk_id_aluno')->references('id')->on('aluno')->onDelete('cascade');
+            $table->boolean('todos');
             $table->timestamps();
         });
     }
@@ -24,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('atividade');
+        Schema::dropIfExists('calendario_atividade');
     }
 };

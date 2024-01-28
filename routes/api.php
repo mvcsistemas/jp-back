@@ -77,28 +77,13 @@ Route::group([
         Route::apiResource('', 'FuncionarioController')->parameters(['' => 'uuid']);
     });
 
-    Route::group([
-        'prefix'    => 'calendario',
-        'as'        => 'calendario.',
-        'namespace' => 'Calendario'
-    ], function () {
-        Route::apiResource('', 'CalendarioController')->parameters(['' => 'uuid']);
-    });
 
     Route::group([
-        'prefix'    => 'atividade',
-        'as'        => 'atividade.',
-        'namespace' => 'Atividade'
+        'prefix'    => 'evento',
+        'as'        => 'evento.',
+        'namespace' => 'Evento'
     ], function () {
-        Route::apiResource('', 'AtividadeController')->parameters(['' => 'uuid']);
-    });
-
-    Route::group([
-        'prefix'    => 'calendario-atividade',
-        'as'        => 'calendario-atividade.',
-        'namespace' => 'CalendarioAtividade'
-    ], function () {
-        Route::apiResource('', 'CalendarioAtividadeController')->parameters(['' => 'uuid']);
+        Route::apiResource('', 'EventoController')->parameters(['' => 'uuid']);
     });
 
     Route::group([
