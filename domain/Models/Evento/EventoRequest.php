@@ -14,7 +14,8 @@ class EventoRequest extends MVCRequest
             'data'          => 'required',
             'titulo'        => 'required',
             'fk_uuid_aluno' => '',
-            'todos'         => 'required'
+            'fk_uuid_status' => '',
+            'todos'         => 'required',
         ];
     }
 

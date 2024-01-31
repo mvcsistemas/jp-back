@@ -1,19 +1,19 @@
 <?php
 
-namespace MVC\Models\Evento;
+namespace MVC\Models\Comunicados;
 
 use Illuminate\Http\JsonResponse;
 use MVC\Base\MVCController;
 
-class EventoController extends MVCController {
+class ComunicadosController extends MVCController {
 
-    protected EventoService $service;
-    protected               $resource;
+    protected ComunicadosService $service;
+    protected                    $resource;
 
-    public function __construct(EventoService $service)
+    public function __construct(ComunicadosService $service)
     {
         $this->service  = $service;
-        $this->resource = EventoResource::class;
+        $this->resource = ComunicadosResource::class;
     }
 
     public function index(): JsonResponse
@@ -30,7 +30,7 @@ class EventoController extends MVCController {
         return $this->responseBuilderRow($row);
     }
 
-    public function store(EventoRequest $request): JsonResponse
+    public function store(ComunicadosRequest $request): JsonResponse
     {
         $data = $this->transformData($request->validated());
 
@@ -39,7 +39,7 @@ class EventoController extends MVCController {
         return $this->responseBuilderRow($row, true, 201);
     }
 
-    public function update($uuid, EventoRequest $request): JsonResponse
+    public function update($uuid, ComunicadosRequest $request): JsonResponse
     {
         $data = $this->transformData($request->validated());
 
@@ -58,8 +58,7 @@ class EventoController extends MVCController {
     public function transformData (array $data): array
     {
         return transformUuidToId($data, [
-            ['tabela' => 'aluno', 'chave_atribuir' => 'fk_id_aluno', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_aluno']],
-            ['tabela' => 'status', 'chave_atribuir' => 'fk_id_status', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_status']]
+            ['tabela' => 'aluno', 'chave_atribuir' => 'fk_id_aluno', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_aluno']]
         ]);
     }
 }

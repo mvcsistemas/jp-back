@@ -77,7 +77,6 @@ Route::group([
         Route::apiResource('', 'FuncionarioController')->parameters(['' => 'uuid']);
     });
 
-
     Route::group([
         'prefix'    => 'evento',
         'as'        => 'evento.',
@@ -108,5 +107,29 @@ Route::group([
         'namespace' => 'Arquivos'
     ], function () {
         Route::apiResource('', 'ArquivosController')->parameters(['' => 'uuid'])->except(['update']);
+    });
+
+    Route::group([
+        'prefix'    => 'comunicados',
+        'as'        => 'comunicados.',
+        'namespace' => 'Comunicados'
+    ], function () {
+        Route::apiResource('', 'ComunicadosController')->parameters(['' => 'uuid']);
+    });
+
+    Route::group([
+        'prefix'    => 'status',
+        'as'        => 'status.',
+        'namespace' => 'Status'
+    ], function () {
+        Route::apiResource('', 'StatusController')->parameters(['' => 'uuid']);
+    });
+
+    Route::group([
+        'prefix'    => 'parceiros',
+        'as'        => 'parceiros.',
+        'namespace' => 'Parceiros'
+    ], function () {
+        Route::apiResource('', 'ParceirosController')->parameters(['' => 'uuid']);
     });
 });
