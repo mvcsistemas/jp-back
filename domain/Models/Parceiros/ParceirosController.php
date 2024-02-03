@@ -1,19 +1,19 @@
 <?php
 
-namespace MVC\Models\Comunicados;
+namespace MVC\Models\Parceiros;
 
 use Illuminate\Http\JsonResponse;
 use MVC\Base\MVCController;
 
-class ComunicadosController extends MVCController {
+class ParceirosController extends MVCController {
 
-    protected ComunicadosService $service;
-    protected                    $resource;
+    protected ParceirosService $service;
+    protected                  $resource;
 
-    public function __construct(ComunicadosService $service)
+    public function __construct(ParceirosService $service)
     {
         $this->service  = $service;
-        $this->resource = ComunicadosResource::class;
+        $this->resource = ParceirosResource::class;
     }
 
     public function index(): JsonResponse
@@ -30,14 +30,14 @@ class ComunicadosController extends MVCController {
         return $this->responseBuilderRow($row);
     }
 
-    public function store(ComunicadosRequest $request): JsonResponse
+    public function store(ParceirosRequest $request): JsonResponse
     {
         $row = $this->service->create($request->validated());
 
         return $this->responseBuilderRow($row, true, 201);
     }
 
-    public function update($uuid, ComunicadosRequest $request): JsonResponse
+    public function update($uuid, ParceirosRequest $request): JsonResponse
     {
         $this->service->updateByUuid($uuid, $request->validated());
 
