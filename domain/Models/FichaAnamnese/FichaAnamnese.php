@@ -35,7 +35,7 @@ class FichaAnamnese extends MVCModel {
                 $query->where('ficha_anamnese.uuid', $uuid);
             })
             ->when($fk_uuid_aluno, function ($query) use ($fk_uuid_aluno) {
-                $query->where('aluno.fk_uuid_aluno', $fk_uuid_aluno);
+                $query->where('aluno.uuid', $fk_uuid_aluno);
             })
             ->when($tipo_ordenacao && $campo_ordenacao, function ($query) use ($tipo_ordenacao, $campo_ordenacao) {
                 $query->orderBy($campo_ordenacao, $tipo_ordenacao);
