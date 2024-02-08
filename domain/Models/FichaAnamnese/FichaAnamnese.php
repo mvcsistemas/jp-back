@@ -20,18 +20,22 @@ class FichaAnamnese extends MVCModel {
     public function index (): Builder
     {
         return $this->select('ficha_anamnese.*', 'aluno.uuid as fk_uuid_aluno')
-                    ->join('users as aluno', 'aluno.id', 'ficha_anamnese.fk_id_aluno');
+                    ->join('aluno', 'aluno.id', 'ficha_anamnese.fk_id_aluno');
     }
 
     public function filter(Builder $query, array $params = []): Builder
     {
         $uuid            = (string)($params['uuid'] ?? '');
+        $fk_uuid_aluno   = (string)($params['fk_uuid_aluno'] ?? '');
         $tipo_ordenacao  = (string)($params['tipo_ordenacao'] ?? '');
         $campo_ordenacao = (string)($params['campo_ordenacao'] ?? '');
 
         return $query
             ->when($uuid, function ($query) use ($uuid) {
                 $query->where('ficha_anamnese.uuid', $uuid);
+            })
+            ->when($fk_uuid_aluno, function ($query) use ($fk_uuid_aluno) {
+                $query->where('aluno.fk_uuid_aluno', $fk_uuid_aluno);
             })
             ->when($tipo_ordenacao && $campo_ordenacao, function ($query) use ($tipo_ordenacao, $campo_ordenacao) {
                 $query->orderBy($campo_ordenacao, $tipo_ordenacao);

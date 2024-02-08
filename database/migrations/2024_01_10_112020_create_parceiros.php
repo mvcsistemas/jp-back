@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id()->index();
             $table->uuid()->index();
             $table->string('nome_empresa', 255);
-            $table->string('descricao', 255)->nullable();
+            $table->text('descricao')->nullable();
             $table->string('link', 255)->nullable();
             $table->string('telefone', 20)->nullable();
             $table->timestamps();
