@@ -47,10 +47,14 @@ function transformUuidToId(array $request, array $data)
     foreach ($data as $item) {
         $campo_pesquisar = $item['campo_pesquisar'];
 
-        $request[$item['chave_atribuir']] = \DB::table($item['tabela'])
-                                               ->where('uuid', $item['uuid'])
-                                               ->first()
-                                               ->$campo_pesquisar;
+        if(!isset($item['uuid']) || !$item['uuid']){
+            $request[$item['chave_atribuir']] = null;
+        }else {
+            $request[$item['chave_atribuir']] = \DB::table($item['tabela'])
+                                                ->where('uuid', $item['uuid'])
+                                                ->first()
+                                                ->$campo_pesquisar;
+        }
     }
 
     return $request;
