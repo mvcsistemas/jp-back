@@ -26,6 +26,7 @@ class Evento extends MVCModel {
     public function filter(Builder $query, array $params = []): Builder
     {
         $uuid            = (string)($params['uuid'] ?? '');
+        $competencia     = (string)($params['competencia'] ?? '');
         $fk_uuid_aluno   = (string)($params['fk_uuid_aluno'] ?? '');
         $fk_uuid_status  = (string)($params['fk_uuid_status'] ?? '');
         $todos           = (bool)($params['todos'] ?? false);
@@ -35,6 +36,12 @@ class Evento extends MVCModel {
         return $query
             ->when($uuid, function ($query) use ($uuid) {
                 $query->where('evento.uuid', $uuid);
+            })
+            ->when($competencia, function ($query) use ($competencia) {
+                list($ano, $mes) = explode('-', $competencia);
+
+                $query->whereYear('evento.data', $ano)
+                      ->whereMonth('evento.data', $mes);
             })
             ->when($todos, function ($query) use ($todos) {
                 $query->where('evento.todos', $todos);
