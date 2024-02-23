@@ -19,11 +19,14 @@ class AuthenticateController extends MVCController
         $credentials['ativo'] = 1;
         $remember             = $request->remember;
         $user                 = User::where('email', $credentials['email'])->first();
+        $data                 = ['funcionario' => $user->funcionario ? true : false];
 
         if ($user && Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
-            return response()->json(['data' => auth()->user()]);
+            $data = array_merge($data, ['nome' => $user->nome, 'email' => $user->email]);
+
+            return response()->json(['data' => $data]);
         }
 
         throw ValidationException::withMessages(['email' => Lang::get('login_senha_invalidos')]);
@@ -44,9 +47,12 @@ class AuthenticateController extends MVCController
     {
         $credentials = $request->only(['email', 'password']);
         $user        = User::where('email', $credentials['email'])->first();
+        $data        = ['funcionario' => $user->funcionario ? true : false];
 
         if ($user && $user->ativo && Hash::check($credentials['password'], $user->password)) {
-            return $user->createToken('token-api')->plainTextToken;
+            $data = array_merge($data, ['nome' => $user->nome, 'email' => $user->email, 'token' => $user->createToken('token-api')->plainTextToken]);
+
+            return response()->json(['data' => $data]);
         }
 
         throw ValidationException::withMessages(['email' => Lang::get('login_senha_invalidos')]);
