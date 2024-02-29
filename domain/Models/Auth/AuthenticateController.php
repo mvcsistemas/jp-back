@@ -13,18 +13,22 @@ use Illuminate\Http\JsonResponse;
 
 class AuthenticateController extends MVCController
 {
-    public function login(AuthenticateRequest $request): mixed
+    public function login(AuthenticateRequest $request): JsonResponse
     {
         $credentials          = $request->only(['email', 'password']);
         $credentials['ativo'] = 1;
         $remember             = $request->remember;
-        $user                 = User::where('email', $credentials['email'])->first();
-        $data                 = ['funcionario' => $user->funcionario ? true : false];
+        $user                 = $this->getUser($credentials['email']);
 
         if ($user && Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
-            $data = array_merge($data, ['nome' => $user->nome, 'email' => $user->email]);
+            $data = [
+                'uuid'        => $user->uuid,
+                'nome'        => $user->nome,
+                'email'       => $user->email,
+                'funcionario' => $this->isFuncionario($user)
+            ];
 
             return response()->json(['data' => $data]);
         }
@@ -43,14 +47,19 @@ class AuthenticateController extends MVCController
         return response()->json(['message' => Lang::get('desconectado_sucesso')]);
     }
 
-    public function loginApi(AuthenticateRequest $request): mixed
+    public function loginApi(AuthenticateRequest $request): JsonResponse
     {
         $credentials = $request->only(['email', 'password']);
-        $user        = User::where('email', $credentials['email'])->first();
-        $data        = ['funcionario' => $user->funcionario ? true : false];
+        $user        = $this->getUser($credentials['email']);
 
         if ($user && $user->ativo && Hash::check($credentials['password'], $user->password)) {
-            $data = array_merge($data, ['nome' => $user->nome, 'email' => $user->email, 'token' => $user->createToken('token-api')->plainTextToken]);
+            $data = [
+                'uuid'        => $user->uuid,
+                'nome'        => $user->nome,
+                'email'       => $user->email,
+                'token'       => $user->createToken('token-api')->plainTextToken,
+                'funcionario' => $this->isFuncionario($user)
+            ];
 
             return response()->json(['data' => $data]);
         }
@@ -63,5 +72,15 @@ class AuthenticateController extends MVCController
         auth()->user()->tokens()->delete();
 
         return response()->json(['message' => Lang::get('desconectado_sucesso')]);
+    }
+
+    public function getUser(string $email): ?User
+    {
+        return User::where('email', $email)->first();
+    }
+
+    public function isFuncionario(User $user): Bool
+    {
+        return $user->funcionario ? true : false;
     }
 }

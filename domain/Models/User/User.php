@@ -16,6 +16,9 @@ use Illuminate\Contracts\Auth\CanResetPassword as CanResetPasswordContract;
 use Illuminate\Notifications\Notifiable;
 use App\Notifications\ResetPasswordNotification;
 use Illuminate\Database\Eloquent\Builder;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use MVC\Models\Aluno\Aluno;
+use MVC\Models\Funcionario\Funcionario;
 
 class User extends MVCModel implements AuthenticatableContract, AuthorizableContract, CanResetPasswordContract {
 
@@ -62,5 +65,15 @@ class User extends MVCModel implements AuthenticatableContract, AuthorizableCont
         $url = config('erp.front_url') . '/esqueci-minha-senha/' . $token . '?email=' . $this->email;
 
         $this->notify(new ResetPasswordNotification($url));
+    }
+
+    public function aluno(): BelongsTo
+    {
+        return $this->belongsTo(Aluno::class, 'id', 'id');
+    }
+
+    public function funcionario(): BelongsTo
+    {
+        return $this->belongsTo(Funcionario::class, 'id', 'id');
     }
 }
