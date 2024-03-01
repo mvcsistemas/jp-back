@@ -20,7 +20,7 @@ class AuthenticateController extends MVCController
         $remember             = $request->remember;
         $user                 = $this->getUser($credentials['email']);
 
-        if ($user && Auth::attempt($credentials, $remember)) {
+        if ($user && ($user->aluno || $user->funcionario) && Auth::attempt($credentials, $remember)) {
             $request->session()->regenerate();
 
             $data = [
@@ -52,7 +52,7 @@ class AuthenticateController extends MVCController
         $credentials = $request->only(['email', 'password']);
         $user        = $this->getUser($credentials['email']);
 
-        if ($user && $user->ativo && Hash::check($credentials['password'], $user->password)) {
+        if ($user && $user->ativo && ($user->aluno || $user->funcionario) && Hash::check($credentials['password'], $user->password)) {
             $data = [
                 'uuid'        => $user->uuid,
                 'nome'        => $user->nome,
