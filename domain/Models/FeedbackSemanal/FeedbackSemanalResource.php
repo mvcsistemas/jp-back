@@ -4,7 +4,8 @@ namespace MVC\Models\FeedbackSemanal;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class FeedbackSemanalResource extends JsonResource {
+class FeedbackSemanalResource extends JsonResource
+{
 
     public function toArray($request)
     {
@@ -13,14 +14,17 @@ class FeedbackSemanalResource extends JsonResource {
             'alimentacao'                   => $this->alimentacao,
             'alimentacao_obs'               => $this->alimentacao_obs,
             'atividade_fisica'              => $this->atividade_fisica,
+            'fk_uuid_atividade_fisica'      => $this->fk_uuid_atividade_fisica,
             'atividade_fisica_obs'          => $this->atividade_fisica_obs,
             'ausencia_dor'                  => $this->ausencia_dor,
+            'fk_uuid_dor'                   => $this->fk_uuid_dor,
             'ausencia_dor_obs'              => $this->ausencia_dor_obs,
             'autoestima'                    => $this->autoestima,
             'autoestima_obs'                => $this->autoestima_obs,
             'disposicao'                    => $this->disposicao,
             'disposicao_obs'                => $this->disposicao_obs,
             'doenca'                        => $this->doenca,
+            'fk_uuid_doenca'                => $this->fk_uuid_doenca,
             'doenca_obs'                    => $this->doenca_obs,
             'exercicio_fisico'              => $this->exercicio_fisico,
             'exercicio_fisico_obs'          => $this->exercicio_fisico_obs,

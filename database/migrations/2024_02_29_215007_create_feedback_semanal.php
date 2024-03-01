@@ -14,13 +14,17 @@ return new class extends Migration
         Schema::create('feedback_semanal', function (Blueprint $table) {
             $table->id()->index();
             $table->uuid()->index();
-            $table->smallInteger('sono');
-            $table->string('sono_obs')->nullable();
+            $table->smallInteger('sono_quantitativo');
+            $table->string('sono_quantitativo_obs')->nullable();
+            $table->smallInteger('sono_qualitativo');
+            $table->string('sono_qualitativo_obs')->nullable();
             $table->smallInteger('ausencia_dor');
+            $table->foreignId('fk_id_dor')->references('id')->on('dores');
             $table->string('ausencia_dor_obs')->nullable();
             $table->smallInteger('alimentacao');
             $table->string('alimentacao_obs')->nullable();
             $table->smallInteger('doenca');
+            $table->foreignId('fk_id_doenca')->references('id')->on('doencas');
             $table->string('doenca_obs')->nullable();
             $table->smallInteger('disposicao');
             $table->string('disposicao_obs')->nullable();
@@ -39,6 +43,7 @@ return new class extends Migration
             $table->smallInteger('ingestao_bebida_alcoolica');
             $table->string('ingestao_bebida_alcoolica_obs')->nullable();
             $table->smallInteger('atividade_fisica');
+            $table->foreignId('fk_id_atividade_fisica')->references('id')->on('atividades_fisicas');
             $table->string('atividade_fisica_obs')->nullable();
             $table->unsignedInteger('fk_id_aluno');
             $table->foreign('fk_id_aluno')->references('id')->on('aluno')->onDelete('cascade');

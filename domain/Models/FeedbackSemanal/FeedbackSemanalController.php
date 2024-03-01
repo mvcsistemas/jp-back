@@ -2,11 +2,13 @@
 
 namespace MVC\Models\FeedbackSemanal;
 
+use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use MVC\Base\MVCController;
 
-class FeedbackSemanalController extends MVCController {
+class FeedbackSemanalController extends MVCController
+{
 
     protected FeedbackSemanalService $service;
     protected                        $resource;
@@ -63,10 +65,13 @@ class FeedbackSemanalController extends MVCController {
         return $this->responseBuilderWithoutPagination($rows, false);
     }
 
-    public function transformData (array $data): array
+    public function transformData(array $data): array
     {
         return transformUuidToId($data, [
-            ['tabela' => 'users', 'chave_atribuir' => 'fk_id_aluno', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_aluno']]
+            ['tabela' => 'users', 'chave_atribuir' => 'fk_id_aluno', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_aluno']],
+            ['tabela' => 'atividades_fisicas', 'chave_atribuir' => 'fk_id_atividade_fisica', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_atividade_fisica']],
+            ['tabela' => 'dores', 'chave_atribuir' => 'fk_id_dor', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_dor']],
+            ['tabela' => 'doencas', 'chave_atribuir' => 'fk_id_doenca', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_doenca']]
         ]);
     }
 }

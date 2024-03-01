@@ -132,4 +132,28 @@ Route::group([
     ], function () {
         Route::apiResource('', 'ParceirosController')->parameters(['' => 'uuid']);
     });
+
+    Route::group([
+        'prefix'    => 'dores',
+        'as'        => 'dores.',
+        'namespace' => 'Dores'
+    ], function () {
+        Route::apiResource('', 'DoresController')->parameters(['' => 'uuid']);
+    });
+
+    Route::group([
+        'prefix'    => 'doencas',
+        'as'        => 'doencas.',
+        'namespace' => 'Doencas'
+    ], function () {
+        Route::apiResource('', 'DoencasController')->parameters(['' => 'uuid']);
+    });
+
+    Route::group([
+        'prefix'    => 'atividades-fisicas',
+        'as'        => 'atividades-fisicas.',
+        'namespace' => 'AtividadesFisicas'
+    ], function () {
+        Route::apiResource('', 'AtividadesFisicasController')->parameters(['' => 'uuid']);
+    });
 });
