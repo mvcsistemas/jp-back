@@ -11,10 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('dores', function (Blueprint $table) {
+        Schema::create('educacao', function (Blueprint $table) {
             $table->id()->index();
             $table->uuid()->index();
-            $table->string('descricao');
+            $table->string('titulo');
+            $table->string('descricao')->nullable();
+            $table->string('link', 255);
+            $table->foreignId('fk_id_categoria')->references('id')->on('categorias');
             $table->timestamps();
         });
     }
@@ -24,6 +27,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('dores');
+        Schema::dropIfExists('educacao');
     }
 };

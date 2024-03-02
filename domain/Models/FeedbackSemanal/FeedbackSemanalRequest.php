@@ -43,7 +43,7 @@ class FeedbackSemanalRequest extends MVCRequest
             'sono_qualitativo_obs'          => '',
             'tabagismo'                     => 'required',
             'tabagismo_obs'                 => '',
-            'fk_uuid_aluno'                 => ['required']
+            'fk_uuid_aluno'                 => ['required', new TravaSemanalRule()]
         ];
     }
 

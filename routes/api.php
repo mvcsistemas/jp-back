@@ -98,6 +98,7 @@ Route::group([
         'as'        => 'feedback-semanal.',
         'namespace' => 'FeedbackSemanal'
     ], function () {
+        Route::get('status', 'FeedbackSemanalController@statusSemanal')->name('status-semanal');
         Route::apiResource('', 'FeedbackSemanalController')->parameters(['' => 'uuid']);
     });
 
@@ -155,5 +156,22 @@ Route::group([
         'namespace' => 'AtividadesFisicas'
     ], function () {
         Route::apiResource('', 'AtividadesFisicasController')->parameters(['' => 'uuid']);
+    });
+
+    Route::group([
+        'prefix'    => 'categorias',
+        'as'        => 'categorias.',
+        'namespace' => 'Categorias'
+    ], function () {
+        Route::apiResource('', 'CategoriasController')->parameters(['' => 'uuid']);
+    });
+
+    Route::group([
+        'prefix'    => 'educacao',
+        'as'        => 'educacao.',
+        'namespace' => 'Educacao'
+    ], function () {
+        Route::get('aluno', 'EducacaoController@educacaoCategoria')->name('educacao-categoria');
+        Route::apiResource('', 'EducacaoController')->parameters(['' => 'uuid']);
     });
 });
