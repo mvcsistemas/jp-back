@@ -14,7 +14,7 @@ class FeedbackSemanalService extends MVCService
         $this->model = $model;
     }
 
-    public function statusSemanal(): Array
+    public function statusSemanal(): array
     {
         $feedbackSemana = $this->model->where('fk_id_aluno', auth()->id())
             ->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])
@@ -30,6 +30,21 @@ class FeedbackSemanalService extends MVCService
         return [
             'status' => false,
             'mensagem' => 'Feedback não enviado nesta semana.'
+        ];
+    }
+
+    public function grafico()
+    {
+        list($ano, $mes) = explode('-', '2024-03');
+
+        $data = $this->model->select('created_at', 'sono_qualitativo')
+            ->whereYear('created_at', $ano)
+            ->whereMonth('created_at', $mes)
+            ->get();
+
+        return $grafico[] = [
+            'label' => $data->pluck('created_at'),
+            'data' => $data->pluck('sono_qualitativo'),
         ];
     }
 }

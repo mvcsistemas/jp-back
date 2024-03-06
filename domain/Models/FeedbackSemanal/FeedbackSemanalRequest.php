@@ -10,7 +10,7 @@ class FeedbackSemanalRequest extends MVCRequest
 
     public function rules()
     {
-        return [
+        $rules = [
             'uuid'                          => '',
             'alimentacao'                   => 'required',
             'alimentacao_obs'               => '',
@@ -43,8 +43,14 @@ class FeedbackSemanalRequest extends MVCRequest
             'sono_qualitativo_obs'          => '',
             'tabagismo'                     => 'required',
             'tabagismo_obs'                 => '',
-            'fk_uuid_aluno'                 => ['required', new TravaSemanalRule()]
+            'fk_uuid_aluno'                 => 'required'
         ];
+
+        if (request()->method() == 'POST') {
+            $rules['fk_uuid_aluno'] = ['required', new TravaSemanalRule()];
+        }
+
+        return $rules;
     }
 
     public function messages()

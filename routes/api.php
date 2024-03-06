@@ -174,4 +174,12 @@ Route::group([
         Route::get('aluno', 'EducacaoController@educacaoCategoria')->name('educacao-categoria');
         Route::apiResource('', 'EducacaoController')->parameters(['' => 'uuid']);
     });
+
+    Route::group([
+        'prefix'    => 'grafico',
+        'as'        => 'grafico.',
+        'namespace' => 'FeedbackSemanal'
+    ], function () {
+        Route::get('', 'FeedbackSemanalController@grafico')->name('grafico');
+    });
 });
