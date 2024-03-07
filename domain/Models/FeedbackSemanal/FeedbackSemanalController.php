@@ -65,9 +65,9 @@ class FeedbackSemanalController extends MVCController
         return $this->responseBuilderWithoutPagination($rows, false);
     }
 
-    public function statusSemanal(): JsonResponse
+    public function statusSemanal(string $fk_uuid_aluno): JsonResponse
     {
-        $row = $this->service->statusSemanal();
+        $row = $this->service->statusSemanal($fk_uuid_aluno);
 
         return $this->responseBuilderRow($row, false);
     }

@@ -14,10 +14,12 @@ class FeedbackSemanalService extends MVCService
         $this->model = $model;
     }
 
-    public function statusSemanal(): array
+    public function statusSemanal(string $fk_uuid_aluno): array
     {
-        $feedbackSemana = $this->model->where('fk_id_aluno', auth()->id())
-            ->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])
+        $feedbackSemana = $this->model
+            ->join('aluno', 'aluno.id', 'feedback_semanal.fk_id_aluno')
+            ->where('aluno.uuid', $fk_uuid_aluno)
+            ->whereBetween('feedback_semanal.created_at', [now()->startOfWeek(), now()->endOfWeek()])
             ->exists();
 
         if ($feedbackSemana) {
