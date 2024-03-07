@@ -16,22 +16,15 @@ class FeedbackSemanalService extends MVCService
 
     public function statusSemanal(string $fk_uuid_aluno): array
     {
-        $feedbackSemana = $this->model
+        $feedbackSemanal = $this->model
             ->join('aluno', 'aluno.id', 'feedback_semanal.fk_id_aluno')
             ->where('aluno.uuid', $fk_uuid_aluno)
             ->whereBetween('feedback_semanal.created_at', [now()->startOfWeek(), now()->endOfWeek()])
             ->exists();
 
-        if ($feedbackSemana) {
-            return [
-                'status' => true,
-                'mensagem' => 'Feedback enviado nesta semana.'
-            ];
-        }
-
         return [
-            'status' => false,
-            'mensagem' => 'Feedback não enviado nesta semana.'
+            'status' => $feedbackSemanal ? true : false,
+            'mensagem' => $feedbackSemanal ? 'Feedback enviado nesta semana.' : 'Feedback não enviado nesta semana.'
         ];
     }
 
