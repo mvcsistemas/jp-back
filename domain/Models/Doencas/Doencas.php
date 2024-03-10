@@ -28,7 +28,7 @@ class Doencas extends MVCModel
                 $query->where('doencas.uuid', $uuid);
             })
             ->when($descricao, function ($query) use ($descricao) {
-                $query->where('doencas.descricao', $descricao);
+                $query->where('doencas.descricao', 'like', "%$descricao%");
             })
             ->when($tipo_ordenacao && $campo_ordenacao, function ($query) use ($tipo_ordenacao, $campo_ordenacao) {
                 $query->orderBy($campo_ordenacao, $tipo_ordenacao);

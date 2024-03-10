@@ -98,6 +98,7 @@ Route::group([
         'as'        => 'feedback-semanal.',
         'namespace' => 'FeedbackSemanal'
     ], function () {
+        Route::get('score-semanal/{fk_uuid_aluno}', 'FeedbackSemanalController@scoreSemanal')->name('score-semanal');
         Route::get('status/{fk_uuid_aluno}', 'FeedbackSemanalController@statusSemanal')->name('status-semanal');
         Route::apiResource('', 'FeedbackSemanalController')->parameters(['' => 'uuid']);
     });

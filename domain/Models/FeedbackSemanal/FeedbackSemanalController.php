@@ -79,6 +79,13 @@ class FeedbackSemanalController extends MVCController
         return $this->responseBuilderRow($row, false);
     }
 
+    public function scoreSemanal(string $fk_uuid_aluno): JsonResponse
+    {
+        $row = $this->service->scoreSemanal($fk_uuid_aluno);
+
+        return $this->responseBuilderRow($row, false);
+    }
+
     public function transformData(array $data): array
     {
         return transformUuidToId($data, [

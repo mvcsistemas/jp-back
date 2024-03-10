@@ -54,7 +54,7 @@ class Educacao extends MVCModel
                 $query->orderBy($campo_ordenacao, $tipo_ordenacao);
             })
             ->when(!$tipo_ordenacao || !$campo_ordenacao, function ($query) {
-                $query->orderBy('educacao.descricao');
+                $query->orderBy('categorias.descricao');
             });
     }
 }

@@ -28,7 +28,7 @@ class Dores extends MVCModel
                 $query->where('dores.uuid', $uuid);
             })
             ->when($descricao, function ($query) use ($descricao) {
-                $query->where('dores.descricao', $descricao);
+                $query->where('dores.descricao', 'like', "%$descricao%");
             })
             ->when($tipo_ordenacao && $campo_ordenacao, function ($query) use ($tipo_ordenacao, $campo_ordenacao) {
                 $query->orderBy($campo_ordenacao, $tipo_ordenacao);

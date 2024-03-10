@@ -28,7 +28,7 @@ class Categorias extends MVCModel
                 $query->where('categorias.uuid', $uuid);
             })
             ->when($descricao, function ($query) use ($descricao) {
-                $query->where('categorias.descricao', $descricao);
+                $query->where('categorias.descricao', 'like', "%$descricao%");
             })
             ->when($tipo_ordenacao && $campo_ordenacao, function ($query) use ($tipo_ordenacao, $campo_ordenacao) {
                 $query->orderBy($campo_ordenacao, $tipo_ordenacao);
