@@ -99,6 +99,56 @@ class FeedbackSemanalController extends MVCController
 
         return $this->responseBuilderRow($row, false);
     }
+
+    public function graficoAutoestima(string $fk_uuid_aluno, string $competencia): JsonResponse
+    {
+        $row = $this->service->graficoAutoestima($fk_uuid_aluno, $competencia);
+
+        return $this->responseBuilderRow($row, false);
+    }
+
+    public function graficoDisposicao(string $fk_uuid_aluno, string $competencia): JsonResponse
+    {
+        $row = $this->service->graficoDisposicao($fk_uuid_aluno, $competencia);
+
+        return $this->responseBuilderRow($row, false);
+    }
+
+    public function graficoIngestaoAgua(string $fk_uuid_aluno, string $competencia): JsonResponse
+    {
+        $row = $this->service->graficoIngestaoAgua($fk_uuid_aluno, $competencia);
+
+        return $this->responseBuilderRow($row, false);
+    }
+
+    public function graficoIngestaoBebidaAlcoolica(string $fk_uuid_aluno, string $competencia): JsonResponse
+    {
+        $row = $this->service->graficoIngestaoBebidaAlcoolica($fk_uuid_aluno, $competencia);
+
+        return $this->responseBuilderRow($row, false);
+    }
+
+    public function graficoIntensidadeTreino(string $fk_uuid_aluno, string $competencia): JsonResponse
+    {
+        $row = $this->service->graficoIntensidadeTreino($fk_uuid_aluno, $competencia);
+
+        return $this->responseBuilderRow($row, false);
+    }
+
+    public function graficoOrganizacao(string $fk_uuid_aluno, string $competencia): JsonResponse
+    {
+        $row = $this->service->graficoOrganizacao($fk_uuid_aluno, $competencia);
+
+        return $this->responseBuilderRow($row, false);
+    }
+
+    public function graficoTabagismo(string $fk_uuid_aluno, string $competencia): JsonResponse
+    {
+        $row = $this->service->graficoTabagismo($fk_uuid_aluno, $competencia);
+
+        return $this->responseBuilderRow($row, false);
+    }
+
     public function scoreSemanal(string $fk_uuid_aluno): JsonResponse
     {
         $row = $this->service->scoreSemanal($fk_uuid_aluno);

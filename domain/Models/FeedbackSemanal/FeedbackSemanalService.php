@@ -122,4 +122,123 @@ class FeedbackSemanalService extends MVCService
             'data' => $data->pluck('frequencia_motivacao'),
         ];
     }
+
+    public function graficoAutoestima(string $fk_uuid_aluno, string $competencia): array
+    {
+        $aluno           = $this->getAluno($fk_uuid_aluno);
+        list($ano, $mes) = explode('-', $competencia);
+
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, autoestima")
+            ->where('fk_id_aluno', $aluno->id)
+            ->whereYear('created_at', $ano)
+            ->whereMonth('created_at', $mes)
+            ->get();
+
+        return $grafico[] = [
+            'label' => $data->pluck('competencia'),
+            'data' => $data->pluck('autoestima'),
+        ];
+    }
+
+    public function graficoDisposicao(string $fk_uuid_aluno, string $competencia): array
+    {
+        $aluno           = $this->getAluno($fk_uuid_aluno);
+        list($ano, $mes) = explode('-', $competencia);
+
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, disposicao")
+            ->where('fk_id_aluno', $aluno->id)
+            ->whereYear('created_at', $ano)
+            ->whereMonth('created_at', $mes)
+            ->get();
+
+        return $grafico[] = [
+            'label' => $data->pluck('competencia'),
+            'data' => $data->pluck('disposicao'),
+        ];
+    }
+
+    public function graficoIngestaoAgua(string $fk_uuid_aluno, string $competencia): array
+    {
+        $aluno           = $this->getAluno($fk_uuid_aluno);
+        list($ano, $mes) = explode('-', $competencia);
+
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, ingestao_agua")
+            ->where('fk_id_aluno', $aluno->id)
+            ->whereYear('created_at', $ano)
+            ->whereMonth('created_at', $mes)
+            ->get();
+
+        return $grafico[] = [
+            'label' => $data->pluck('competencia'),
+            'data' => $data->pluck('ingestao_agua'),
+        ];
+    }
+
+    public function graficoIngestaoBebidaAlcoolica(string $fk_uuid_aluno, string $competencia): array
+    {
+        $aluno           = $this->getAluno($fk_uuid_aluno);
+        list($ano, $mes) = explode('-', $competencia);
+
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, ingestao_bebida_alcoolica")
+            ->where('fk_id_aluno', $aluno->id)
+            ->whereYear('created_at', $ano)
+            ->whereMonth('created_at', $mes)
+            ->get();
+
+        return $grafico[] = [
+            'label' => $data->pluck('competencia'),
+            'data' => $data->pluck('ingestao_bebida_alcoolica'),
+        ];
+    }
+
+    public function graficoIntensidadeTreino(string $fk_uuid_aluno, string $competencia): array
+    {
+        $aluno           = $this->getAluno($fk_uuid_aluno);
+        list($ano, $mes) = explode('-', $competencia);
+
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, intensidade_treino")
+            ->where('fk_id_aluno', $aluno->id)
+            ->whereYear('created_at', $ano)
+            ->whereMonth('created_at', $mes)
+            ->get();
+
+        return $grafico[] = [
+            'label' => $data->pluck('competencia'),
+            'data' => $data->pluck('intensidade_treino'),
+        ];
+    }
+
+    public function graficoOrganizacao(string $fk_uuid_aluno, string $competencia): array
+    {
+        $aluno           = $this->getAluno($fk_uuid_aluno);
+        list($ano, $mes) = explode('-', $competencia);
+
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, organizacao")
+            ->where('fk_id_aluno', $aluno->id)
+            ->whereYear('created_at', $ano)
+            ->whereMonth('created_at', $mes)
+            ->get();
+
+        return $grafico[] = [
+            'label' => $data->pluck('competencia'),
+            'data' => $data->pluck('organizacao'),
+        ];
+    }
+
+    public function graficoTabagismo(string $fk_uuid_aluno, string $competencia): array
+    {
+        $aluno           = $this->getAluno($fk_uuid_aluno);
+        list($ano, $mes) = explode('-', $competencia);
+
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, tabagismo")
+            ->where('fk_id_aluno', $aluno->id)
+            ->whereYear('created_at', $ano)
+            ->whereMonth('created_at', $mes)
+            ->get();
+
+        return $grafico[] = [
+            'label' => $data->pluck('competencia'),
+            'data' => $data->pluck('tabagismo'),
+        ];
+    }
 }
