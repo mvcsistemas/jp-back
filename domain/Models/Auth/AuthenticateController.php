@@ -21,8 +21,6 @@ class AuthenticateController extends MVCController
         $user                 = $this->getUser($credentials['email']);
 
         if ($user && ($user->aluno || $user->funcionario) && Auth::attempt($credentials, $remember)) {
-            $request->session()->regenerate();
-
             $data = [
                 'uuid'        => $user->uuid,
                 'nome'        => $user->nome,
@@ -67,9 +65,9 @@ class AuthenticateController extends MVCController
         throw ValidationException::withMessages(['email' => Lang::get('login_senha_invalidos')]);
     }
 
-    public function logoutApi(): JsonResponse
+    public function logoutApi(Request $request): JsonResponse
     {
-        auth()->user()->tokens()->delete();
+        $request->user()->currentAccessToken()->delete();
 
         return response()->json(['message' => Lang::get('desconectado_sucesso')]);
     }
