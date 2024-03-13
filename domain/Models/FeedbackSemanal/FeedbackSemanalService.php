@@ -2,7 +2,9 @@
 
 namespace MVC\Models\FeedbackSemanal;
 
+use Illuminate\Validation\ValidationException;
 use MVC\Base\MVCService;
+use MVC\Models\Aluno\Aluno;
 
 class FeedbackSemanalService extends MVCService
 {
@@ -31,7 +33,7 @@ class FeedbackSemanalService extends MVCService
     public function scoreSemanal(string $fk_uuid_aluno): array
     {
         $score = $this->model
-            ->selectRaw('(alimentacao + atividade_fisica + ausencia_dor + autoestima + disposicao + doenca + exercicio_fisico + ingestao_agua + ingestao_bebida_alcoolica + intensidade_treino + organizacao + sono_qualitativo + sono_quantitativo + tabagismo) as count')
+            ->selectRaw('(alimentacao + frequencia_motivacao + ausencia_dor + autoestima + disposicao + doenca + ingestao_agua + ingestao_bebida_alcoolica + intensidade_treino + organizacao + sono_qualitativo + sono_quantitativo + tabagismo) as count')
             ->join('aluno', 'aluno.id', 'feedback_semanal.fk_id_aluno')
             ->where('aluno.uuid', $fk_uuid_aluno)
             ->whereBetween('feedback_semanal.created_at', [now()->startOfWeek(), now()->endOfWeek()])
@@ -42,18 +44,82 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    public function grafico()
+    public function getAluno(string $fk_uuid_aluno): Aluno
     {
-        list($ano, $mes) = explode('-', '2024-03');
+        $aluno = Aluno::where('uuid', $fk_uuid_aluno)->first();
 
-        $data = $this->model->select('created_at', 'sono_qualitativo')
+        throw_if(!$aluno,  ValidationException::withMessages([
+            'aluno' => 'Aluno não encontrado.',
+        ]));
+
+        return $aluno;
+    }
+
+    public function graficoSonoQualitativo(string $fk_uuid_aluno, string $competencia): array
+    {
+        $aluno           = $this->getAluno($fk_uuid_aluno);
+        list($ano, $mes) = explode('-', $competencia);
+
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, sono_qualitativo")
+            ->where('fk_id_aluno', $aluno->id)
             ->whereYear('created_at', $ano)
             ->whereMonth('created_at', $mes)
             ->get();
 
         return $grafico[] = [
-            'label' => $data->pluck('created_at'),
+            'label' => $data->pluck('competencia'),
             'data' => $data->pluck('sono_qualitativo'),
+        ];
+    }
+
+    public function graficoSonoQuantitativo(string $fk_uuid_aluno, string $competencia): array
+    {
+        $aluno           = $this->getAluno($fk_uuid_aluno);
+        list($ano, $mes) = explode('-', $competencia);
+
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, sono_quantitativo")
+            ->where('fk_id_aluno', $aluno->id)
+            ->whereYear('created_at', $ano)
+            ->whereMonth('created_at', $mes)
+            ->get();
+
+        return $grafico[] = [
+            'label' => $data->pluck('competencia'),
+            'data' => $data->pluck('sono_quantitativo'),
+        ];
+    }
+
+    public function graficoAlimentacao(string $fk_uuid_aluno, string $competencia): array
+    {
+        $aluno           = $this->getAluno($fk_uuid_aluno);
+        list($ano, $mes) = explode('-', $competencia);
+
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, alimentacao")
+            ->where('fk_id_aluno', $aluno->id)
+            ->whereYear('created_at', $ano)
+            ->whereMonth('created_at', $mes)
+            ->get();
+
+        return $grafico[] = [
+            'label' => $data->pluck('competencia'),
+            'data' => $data->pluck('alimentacao'),
+        ];
+    }
+
+    public function graficoFrequenciaMotivacao(string $fk_uuid_aluno, string $competencia): array
+    {
+        $aluno           = $this->getAluno($fk_uuid_aluno);
+        list($ano, $mes) = explode('-', $competencia);
+
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, frequencia_motivacao")
+            ->where('fk_id_aluno', $aluno->id)
+            ->whereYear('created_at', $ano)
+            ->whereMonth('created_at', $mes)
+            ->get();
+
+        return $grafico[] = [
+            'label' => $data->pluck('competencia'),
+            'data' => $data->pluck('frequencia_motivacao'),
         ];
     }
 }

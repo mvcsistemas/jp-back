@@ -38,13 +38,10 @@ return new class extends Migration
             $table->string('autoestima_obs')->nullable();
             $table->smallInteger('tabagismo');
             $table->string('tabagismo_obs')->nullable();
-            $table->smallInteger('exercicio_fisico');
-            $table->string('exercicio_fisico_obs')->nullable();
             $table->smallInteger('ingestao_bebida_alcoolica');
             $table->string('ingestao_bebida_alcoolica_obs')->nullable();
-            $table->smallInteger('atividade_fisica');
-            $table->foreignId('fk_id_atividade_fisica')->references('id')->on('atividades_fisicas');
-            $table->string('atividade_fisica_obs')->nullable();
+            $table->smallInteger('frequencia_motivacao');
+            $table->string('frequencia_motivacao_obs')->nullable();
             $table->unsignedInteger('fk_id_aluno');
             $table->foreign('fk_id_aluno')->references('id')->on('aluno')->onDelete('cascade');
             $table->timestamps();

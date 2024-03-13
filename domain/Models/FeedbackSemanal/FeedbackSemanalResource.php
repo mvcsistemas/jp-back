@@ -9,13 +9,10 @@ class FeedbackSemanalResource extends JsonResource
 
     public function toArray($request)
     {
-        $retorno = [
+        return [
             'uuid'                          => $this->uuid,
             'alimentacao'                   => $this->alimentacao,
             'alimentacao_obs'               => $this->alimentacao_obs,
-            'atividade_fisica'              => $this->atividade_fisica,
-            'fk_uuid_atividade_fisica'      => $this->fk_uuid_atividade_fisica,
-            'atividade_fisica_obs'          => $this->atividade_fisica_obs,
             'ausencia_dor'                  => $this->ausencia_dor,
             'fk_uuid_dor'                   => $this->fk_uuid_dor,
             'ausencia_dor_obs'              => $this->ausencia_dor_obs,
@@ -26,8 +23,8 @@ class FeedbackSemanalResource extends JsonResource
             'doenca'                        => $this->doenca,
             'fk_uuid_doenca'                => $this->fk_uuid_doenca,
             'doenca_obs'                    => $this->doenca_obs,
-            'exercicio_fisico'              => $this->exercicio_fisico,
-            'exercicio_fisico_obs'          => $this->exercicio_fisico_obs,
+            'frequencia_motivacao'          => $this->frequencia_motivacao,
+            'frequencia_motivacao_obs'      => $this->frequencia_motivacao_obs,
             'ingestao_agua'                 => $this->ingestao_agua,
             'ingestao_agua_obs'             => $this->ingestao_agua_obs,
             'ingestao_bebida_alcoolica'     => $this->ingestao_bebida_alcoolica,
@@ -44,7 +41,5 @@ class FeedbackSemanalResource extends JsonResource
             'tabagismo_obs'                 => $this->tabagismo_obs,
             'fk_uuid_aluno'                 => $this->fk_uuid_aluno,
         ];
-
-        return $retorno;
     }
 }

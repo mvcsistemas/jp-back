@@ -177,10 +177,13 @@ Route::group([
     });
 
     Route::group([
-        'prefix'    => 'grafico',
+        'prefix'    => 'grafico/{fk_uuid_aluno}',
         'as'        => 'grafico.',
         'namespace' => 'FeedbackSemanal'
     ], function () {
-        Route::get('', 'FeedbackSemanalController@grafico')->name('grafico');
+        Route::get('sono-qualitativo/{competencia}', 'FeedbackSemanalController@graficoSonoQualitativo')->name('sono-qualitativo');
+        Route::get('sono-quantitativo/{competencia}', 'FeedbackSemanalController@graficoSonoQuantitativo')->name('sono-quantitativo');
+        Route::get('alimentacao/{competencia}', 'FeedbackSemanalController@graficoAlimentacao')->name('alimentacao');
+        Route::get('frequencia-motivacao/{competencia}', 'FeedbackSemanalController@graficoFrequenciaMotivacao')->name('frequencia-motivacao');
     });
 });

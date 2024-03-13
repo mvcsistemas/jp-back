@@ -2,7 +2,6 @@
 
 namespace MVC\Models\FeedbackSemanal;
 
-use Carbon\Carbon;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use MVC\Base\MVCController;
@@ -72,13 +71,34 @@ class FeedbackSemanalController extends MVCController
         return $this->responseBuilderRow($row, false);
     }
 
-    public function grafico(): JsonResponse
+    public function graficoSonoQualitativo(string $fk_uuid_aluno, string $competencia): JsonResponse
     {
-        $row = $this->service->grafico();
+        $row = $this->service->graficoSonoQualitativo($fk_uuid_aluno, $competencia);
 
         return $this->responseBuilderRow($row, false);
     }
 
+    public function graficoSonoQuantitativo(string $fk_uuid_aluno, string $competencia): JsonResponse
+    {
+        $row = $this->service->graficoSonoQuantitativo($fk_uuid_aluno, $competencia);
+
+        return $this->responseBuilderRow($row, false);
+
+    }
+
+    public function graficoAlimentacao(string $fk_uuid_aluno, string $competencia): JsonResponse
+    {
+        $row = $this->service->graficoAlimentacao($fk_uuid_aluno, $competencia);
+
+        return $this->responseBuilderRow($row, false);
+    }
+
+    public function graficoFrequenciaMotivacao(string $fk_uuid_aluno, string $competencia): JsonResponse
+    {
+        $row = $this->service->graficoFrequenciaMotivacao($fk_uuid_aluno, $competencia);
+
+        return $this->responseBuilderRow($row, false);
+    }
     public function scoreSemanal(string $fk_uuid_aluno): JsonResponse
     {
         $row = $this->service->scoreSemanal($fk_uuid_aluno);
@@ -90,7 +110,6 @@ class FeedbackSemanalController extends MVCController
     {
         return transformUuidToId($data, [
             ['tabela' => 'users', 'chave_atribuir' => 'fk_id_aluno', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_aluno']],
-            ['tabela' => 'atividades_fisicas', 'chave_atribuir' => 'fk_id_atividade_fisica', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_atividade_fisica']],
             ['tabela' => 'dores', 'chave_atribuir' => 'fk_id_dor', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_dor']],
             ['tabela' => 'doencas', 'chave_atribuir' => 'fk_id_doenca', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_doenca']]
         ]);
