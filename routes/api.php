@@ -192,5 +192,7 @@ Route::group([
         Route::get('intensidade-treino/{competencia}', 'FeedbackSemanalController@graficoIntensidadeTreino')->name('intensidade-treino');
         Route::get('organizacao/{competencia}', 'FeedbackSemanalController@graficoOrganizacao')->name('organizacao');
         Route::get('tabagismo/{competencia}', 'FeedbackSemanalController@graficoTabagismo')->name('tabagismo');
+        Route::get('dores/{competencia}', 'FeedbackSemanalController@graficoDores')->name('dores');
+        Route::get('sono-qualitativo/media/{competencia}', 'FeedbackSemanalController@graficoMediaSonoQualitativo')->name('sono-qualitativo-media');
     });
 });

@@ -2,6 +2,7 @@
 
 namespace MVC\Models\FeedbackSemanal;
 
+use Carbon\Carbon;
 use Illuminate\Validation\ValidationException;
 use MVC\Base\MVCService;
 use MVC\Models\Aluno\Aluno;
@@ -33,7 +34,7 @@ class FeedbackSemanalService extends MVCService
     public function scoreSemanal(string $fk_uuid_aluno): array
     {
         $score = $this->model
-            ->selectRaw('(alimentacao + frequencia_motivacao + ausencia_dor + autoestima + disposicao + doenca + ingestao_agua + ingestao_bebida_alcoolica + intensidade_treino + organizacao + sono_qualitativo + sono_quantitativo + tabagismo) as count')
+            ->selectRaw('(alimentacao + frequencia_motivacao + ausencia_dor + autoestima + disposicao + doenca + ingestao_agua + ingestao_bebida_alcoolica + intensidade_treino + organizacao + sono_qualitativo + tabagismo) as count')
             ->join('aluno', 'aluno.id', 'feedback_semanal.fk_id_aluno')
             ->where('aluno.uuid', $fk_uuid_aluno)
             ->whereBetween('feedback_semanal.created_at', [now()->startOfWeek(), now()->endOfWeek()])
@@ -239,6 +240,43 @@ class FeedbackSemanalService extends MVCService
         return $grafico[] = [
             'label' => $data->pluck('competencia'),
             'data' => $data->pluck('tabagismo'),
+        ];
+    }
+
+    public function graficoDores(string $fk_uuid_aluno, string $competencia): array
+    {
+        $aluno           = $this->getAluno($fk_uuid_aluno);
+        list($ano, $mes) = explode('-', $competencia);
+
+        $data = $this->model->selectRaw("DATE_FORMAT(feedback_semanal.created_at, '%Y-%m-%d') as competencia, ausencia_dor, dores.descricao as dores")
+            ->join('dores', 'dores.id', 'feedback_semanal.fk_id_dor')
+            ->where('fk_id_aluno', $aluno->id)
+            ->whereYear('feedback_semanal.created_at', $ano)
+            ->whereMonth('feedback_semanal.created_at', $mes)
+            ->get();
+
+        return $grafico[] = [
+            'label' => $data->pluck('competencia'),
+            'data'  => $data->pluck('ausencia_dor'),
+            'dores' => $data->pluck('dores'),
+        ];
+    }
+
+    public function graficoMediaSonoQualitativo(string $fk_uuid_aluno, string $competencia): array
+    {
+        $aluno = $this->getAluno($fk_uuid_aluno);
+
+        //media maxima: 20. Pois são 4 perguntas no mês com pontuação máxima de 5.
+        $data = $this->model->selectRaw("SUM(sono_qualitativo) as media")
+            ->where('fk_id_aluno', $aluno->id)
+            ->whereYear('feedback_semanal.created_at', $competencia)
+            ->first();
+
+        $media = number_format($data->media / date('m'), 2, ',', '.');
+
+        return $grafico[] = [
+            'media' =>  $media,
+            'mes_referencia' =>  Carbon::now()->isoFormat('MMMM'),
         ];
     }
 }

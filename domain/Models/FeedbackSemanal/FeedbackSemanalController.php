@@ -149,6 +149,20 @@ class FeedbackSemanalController extends MVCController
         return $this->responseBuilderRow($row, false);
     }
 
+    public function graficoDores(string $fk_uuid_aluno, string $competencia): JsonResponse
+    {
+        $row = $this->service->graficoDores($fk_uuid_aluno, $competencia);
+
+        return $this->responseBuilderRow($row, false);
+    }
+
+    public function graficoMediaSonoQualitativo(string $fk_uuid_aluno, string $competencia): JsonResponse
+    {
+        $row = $this->service->graficoMediaSonoQualitativo($fk_uuid_aluno, $competencia);
+
+        return $this->responseBuilderRow($row, false);
+    }
+
     public function scoreSemanal(string $fk_uuid_aluno): JsonResponse
     {
         $row = $this->service->scoreSemanal($fk_uuid_aluno);
