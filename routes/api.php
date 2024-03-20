@@ -193,6 +193,8 @@ Route::group([
         Route::get('organizacao/{competencia}', 'FeedbackSemanalController@graficoOrganizacao')->name('organizacao');
         Route::get('tabagismo/{competencia}', 'FeedbackSemanalController@graficoTabagismo')->name('tabagismo');
         Route::get('dores/{competencia}', 'FeedbackSemanalController@graficoDores')->name('dores');
+        Route::get('doencas/{competencia}', 'FeedbackSemanalController@graficoDoencas')->name('doencas');
         Route::get('sono-qualitativo/media/{competencia}', 'FeedbackSemanalController@graficoMediaSonoQualitativo')->name('sono-qualitativo-media');
+        Route::get('sono-quantitativo/media/{competencia}', 'FeedbackSemanalController@graficoMediaSonoQuantitativo')->name('sono-quantitativo-media');
     });
 });

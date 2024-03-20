@@ -61,7 +61,7 @@ class FeedbackSemanalService extends MVCService
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
 
-        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, sono_qualitativo")
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%d/%m/%Y') as competencia, sono_qualitativo")
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('created_at', $ano)
             ->whereMonth('created_at', $mes)
@@ -78,7 +78,7 @@ class FeedbackSemanalService extends MVCService
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
 
-        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, sono_quantitativo")
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%d/%m/%Y') as competencia, sono_quantitativo")
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('created_at', $ano)
             ->whereMonth('created_at', $mes)
@@ -95,7 +95,7 @@ class FeedbackSemanalService extends MVCService
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
 
-        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, alimentacao")
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%d/%m/%Y') as competencia, alimentacao")
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('created_at', $ano)
             ->whereMonth('created_at', $mes)
@@ -112,7 +112,7 @@ class FeedbackSemanalService extends MVCService
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
 
-        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, frequencia_motivacao")
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%d/%m/%Y') as competencia, frequencia_motivacao")
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('created_at', $ano)
             ->whereMonth('created_at', $mes)
@@ -129,7 +129,7 @@ class FeedbackSemanalService extends MVCService
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
 
-        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, autoestima")
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%d/%m/%Y') as competencia, autoestima")
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('created_at', $ano)
             ->whereMonth('created_at', $mes)
@@ -146,7 +146,7 @@ class FeedbackSemanalService extends MVCService
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
 
-        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, disposicao")
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%d/%m/%Y') as competencia, disposicao")
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('created_at', $ano)
             ->whereMonth('created_at', $mes)
@@ -163,7 +163,7 @@ class FeedbackSemanalService extends MVCService
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
 
-        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, ingestao_agua")
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%d/%m/%Y') as competencia, ingestao_agua")
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('created_at', $ano)
             ->whereMonth('created_at', $mes)
@@ -180,7 +180,7 @@ class FeedbackSemanalService extends MVCService
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
 
-        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, ingestao_bebida_alcoolica")
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%d/%m/%Y') as competencia, ingestao_bebida_alcoolica")
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('created_at', $ano)
             ->whereMonth('created_at', $mes)
@@ -197,7 +197,7 @@ class FeedbackSemanalService extends MVCService
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
 
-        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, intensidade_treino")
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%d/%m/%Y') as competencia, intensidade_treino")
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('created_at', $ano)
             ->whereMonth('created_at', $mes)
@@ -214,7 +214,7 @@ class FeedbackSemanalService extends MVCService
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
 
-        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, organizacao")
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%d/%m/%Y') as competencia, organizacao")
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('created_at', $ano)
             ->whereMonth('created_at', $mes)
@@ -231,7 +231,7 @@ class FeedbackSemanalService extends MVCService
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
 
-        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%Y-%m-%d') as competencia, tabagismo")
+        $data = $this->model->selectRaw("DATE_FORMAT(created_at, '%d/%m/%Y') as competencia, tabagismo")
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('created_at', $ano)
             ->whereMonth('created_at', $mes)
@@ -248,7 +248,7 @@ class FeedbackSemanalService extends MVCService
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
 
-        $data = $this->model->selectRaw("DATE_FORMAT(feedback_semanal.created_at, '%Y-%m-%d') as competencia, ausencia_dor, dores.descricao as dores")
+        $data = $this->model->selectRaw("DATE_FORMAT(feedback_semanal.created_at, '%d/%m/%Y') as competencia, ausencia_dor, dores.descricao as dores")
             ->join('dores', 'dores.id', 'feedback_semanal.fk_id_dor')
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('feedback_semanal.created_at', $ano)
@@ -256,9 +256,28 @@ class FeedbackSemanalService extends MVCService
             ->get();
 
         return $grafico[] = [
-            'label' => $data->pluck('competencia'),
-            'data'  => $data->pluck('ausencia_dor'),
-            'dores' => $data->pluck('dores'),
+            'label'     => $data->pluck('competencia'),
+            'data'      => $data->pluck('ausencia_dor'),
+            'descricao' => $data->pluck('dores'),
+        ];
+    }
+
+    public function graficoDoencas(string $fk_uuid_aluno, string $competencia): array
+    {
+        $aluno           = $this->getAluno($fk_uuid_aluno);
+        list($ano, $mes) = explode('-', $competencia);
+
+        $data = $this->model->selectRaw("DATE_FORMAT(feedback_semanal.created_at, '%d/%m/%Y') as competencia, ausencia_dor, doencas.descricao as doencas")
+            ->join('doencas', 'doencas.id', 'feedback_semanal.fk_id_doenca')
+            ->where('fk_id_aluno', $aluno->id)
+            ->whereYear('feedback_semanal.created_at', $ano)
+            ->whereMonth('feedback_semanal.created_at', $mes)
+            ->get();
+
+        return $grafico[] = [
+            'label'     => $data->pluck('competencia'),
+            'data'      => $data->pluck('ausencia_dor'),
+            'descricao' => $data->pluck('doencas'),
         ];
     }
 
@@ -266,7 +285,6 @@ class FeedbackSemanalService extends MVCService
     {
         $aluno = $this->getAluno($fk_uuid_aluno);
 
-        //media maxima: 20. Pois são 4 perguntas no mês com pontuação máxima de 5.
         $data = $this->model->selectRaw("SUM(sono_qualitativo) as media")
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('feedback_semanal.created_at', $competencia)
@@ -278,5 +296,29 @@ class FeedbackSemanalService extends MVCService
             'media' =>  $media,
             'mes_referencia' =>  Carbon::now()->isoFormat('MMMM'),
         ];
+    }
+
+    public function graficoMediaSonoQuantitativo(string $fk_uuid_aluno, string $competencia): array
+    {
+        // 8×7+7×7+6×7+8×7 / 28 dias -> seguir essa logica
+        $aluno = $this->getAluno($fk_uuid_aluno);
+
+        $data = $this->model->selectRaw("SUM(sono_quantitativo) as media")
+            ->where('fk_id_aluno', $aluno->id)
+            ->whereYear('feedback_semanal.created_at', $competencia)
+            ->first();
+
+        // $total_horas_mes = array_sum(array_map(function() use ($data) {
+        //     return $horas * 7;
+        // }, $horas_de_sono));
+
+        // dd($data);
+
+        // $media = number_format($data->media / date('m'), 2, ',', '.');
+
+        // return $grafico[] = [
+        //     'media' =>  $media,
+        //     'mes_referencia' =>  Carbon::now()->isoFormat('MMMM'),
+        // ];
     }
 }
