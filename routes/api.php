@@ -49,7 +49,7 @@ Route::group([
 
 Route::group([
     'as'         => 'portal.',
-    'prefix'    => 'portal',
+    'prefix'     => 'portal',
     'middleware' => 'auth:sanctum'
 ], function () {
 

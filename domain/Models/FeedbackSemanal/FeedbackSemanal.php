@@ -20,7 +20,7 @@ class FeedbackSemanal extends MVCModel
 
     public function index(): Builder
     {
-        return $this->select('feedback_semanal.*', 'aluno.uuid as fk_uuid_aluno', 'doencas.uuid as fk_uuid_doenca', 'dores.uuid as fk_uuid_dor')
+        return $this->select('feedback_semanal.*', 'aluno.uuid as fk_uuid_aluno', 'doencas.uuid as fk_uuid_doenca', 'doencas.descricao as descricao_doenca', 'dores.uuid as fk_uuid_dor', 'dores.descricao as descricao_dor')
             ->join('users as aluno', 'aluno.id', 'feedback_semanal.fk_id_aluno')
             ->join('doencas', 'doencas.id', 'feedback_semanal.fk_id_doenca')
             ->join('dores', 'dores.id', 'feedback_semanal.fk_id_dor');

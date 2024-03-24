@@ -17,10 +17,10 @@ class TravaSemanalRule implements ValidationRule
         }
 
         // Verifica se já existe um feedback do aluno nesta semana
-        $feedbackSemana = FeedbackSemanal::where('fk_id_aluno', auth()->id())
-            ->whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])
+        $feedbackSemana = FeedbackSemanal::join('aluno', 'aluno.id', 'feedback_semanal.fk_id_aluno')
+            ->where('aluno.uuid', request()->fk_uuid_aluno)
+            ->whereBetween('feedback_semanal.created_at', [now()->startOfWeek(), now()->endOfWeek()])
             ->exists();
-
         if ($feedbackSemana) {
             $fail('Feedback já enviado nesta semana.');
         }

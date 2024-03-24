@@ -22,7 +22,7 @@ class AtividadesFisicasController extends MVCController
     {
         $rows = $this->service->index();
 
-        return $this->responseBuilder($rows);
+        return $this->responseBuilderWithoutPagination($rows);
     }
 
     public function show($uuid): JsonResponse

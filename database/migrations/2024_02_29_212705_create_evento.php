@@ -19,6 +19,7 @@ return new class extends Migration
             $table->unsignedInteger('fk_id_aluno')->nullable();
             $table->foreign('fk_id_aluno')->references('id')->on('aluno')->onDelete('cascade');
             $table->foreignId('fk_id_status')->nullable()->references('id')->on('status');
+            $table->foreignId('fk_id_atividade_fisica')->nullable()->references('id')->on('atividades_fisicas');
             $table->boolean('todos');
             $table->timestamps();
         });

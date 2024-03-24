@@ -10,12 +10,13 @@ class EventoRequest extends MVCRequest
     public function rules()
     {
         return [
-            'uuid'          => '',
-            'data'          => 'required',
-            'titulo'        => 'required',
-            'fk_uuid_aluno' => '',
-            'fk_uuid_status' => '',
-            'todos'         => 'required',
+            'uuid'                     => '',
+            'data'                     => 'required',
+            'titulo'                   => 'required',
+            'fk_uuid_aluno'            => '',
+            'fk_uuid_status'           => '',
+            'fk_uuid_atividade_fisica' => '',
+            'todos'                    => 'required',
         ];
     }
 

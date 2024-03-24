@@ -300,25 +300,18 @@ class FeedbackSemanalService extends MVCService
 
     public function graficoMediaSonoQuantitativo(string $fk_uuid_aluno, string $competencia): array
     {
-        // 8×7+7×7+6×7+8×7 / 28 dias -> seguir essa logica
-        $aluno = $this->getAluno($fk_uuid_aluno);
+        $aluno          = $this->getAluno($fk_uuid_aluno);
+        $data_inicio    = Carbon::now()->startOfYear();
+        $data_atual     = Carbon::now();
+        $diferenca_dias = $data_inicio->diffInDays($data_atual);
 
-        $data = $this->model->selectRaw("SUM(sono_quantitativo) as media")
+        $data = $this->model->selectRaw("SUM(sono_quantitativo) * 7 as qtd_horas")
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('feedback_semanal.created_at', $competencia)
             ->first();
 
-        // $total_horas_mes = array_sum(array_map(function() use ($data) {
-        //     return $horas * 7;
-        // }, $horas_de_sono));
-
-        // dd($data);
-
-        // $media = number_format($data->media / date('m'), 2, ',', '.');
-
-        // return $grafico[] = [
-        //     'media' =>  $media,
-        //     'mes_referencia' =>  Carbon::now()->isoFormat('MMMM'),
-        // ];
+        return $grafico[] = [
+            'media' =>  $data->qtd_horas / $diferenca_dias
+        ];
     }
 }

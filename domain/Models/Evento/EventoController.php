@@ -5,7 +5,8 @@ namespace MVC\Models\Evento;
 use Illuminate\Http\JsonResponse;
 use MVC\Base\MVCController;
 
-class EventoController extends MVCController {
+class EventoController extends MVCController
+{
 
     protected EventoService $service;
     protected               $resource;
@@ -55,11 +56,18 @@ class EventoController extends MVCController {
         return $this->responseBuilderRow([], false, 204);
     }
 
-    public function transformData (array $data): array
+    public function transformData(array $data): array
     {
         return transformUuidToId($data, [
-            ['tabela' => 'aluno', 'chave_atribuir' => 'fk_id_aluno', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_aluno']],
-            ['tabela' => 'status', 'chave_atribuir' => 'fk_id_status', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_status']]
+            [
+                'tabela' => 'aluno', 'chave_atribuir' => 'fk_id_aluno', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_aluno']
+            ],
+            [
+                'tabela' => 'status', 'chave_atribuir' => 'fk_id_status', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_status']
+            ],
+            [
+                'tabela' => 'atividades_fisicas', 'chave_atribuir' => 'fk_id_atividade_fisica', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_atividade_fisica']
+            ]
         ]);
     }
 }
