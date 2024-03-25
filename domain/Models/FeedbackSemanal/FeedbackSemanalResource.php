@@ -10,6 +10,7 @@ class FeedbackSemanalResource extends JsonResource
     public function toArray($request)
     {
         return [
+            'data'                          => convertDateTime($this->created_at, 'Y-m-d'),
             'uuid'                          => $this->uuid,
             'alimentacao'                   => $this->alimentacao,
             'alimentacao_obs'               => $this->alimentacao_obs,
