@@ -90,7 +90,7 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    public function graficoAlimentacao(string $fk_uuid_aluno, string $competencia): array
+    public function graficoAlimentacao(string $fk_uuid_aluno, string $competencia, bool $media): array
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -101,13 +101,19 @@ class FeedbackSemanalService extends MVCService
             ->whereMonth('created_at', $mes)
             ->get();
 
+        if ($media) {
+            return $grafico[] = [
+                'media' => $data->pluck('alimentacao')->sum() / count($data->pluck('competencia')),
+            ];
+        }
+
         return $grafico[] = [
             'label' => $data->pluck('competencia'),
             'data' => $data->pluck('alimentacao'),
         ];
     }
 
-    public function graficoFrequenciaMotivacao(string $fk_uuid_aluno, string $competencia): array
+    public function graficoFrequenciaMotivacao(string $fk_uuid_aluno, string $competencia, bool $media): array
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -118,13 +124,19 @@ class FeedbackSemanalService extends MVCService
             ->whereMonth('created_at', $mes)
             ->get();
 
+        if ($media) {
+            return $grafico[] = [
+                'media' => $data->pluck('frequencia_motivacao')->sum() / count($data->pluck('competencia')),
+            ];
+        }
+
         return $grafico[] = [
             'label' => $data->pluck('competencia'),
             'data' => $data->pluck('frequencia_motivacao'),
         ];
     }
 
-    public function graficoAutoestima(string $fk_uuid_aluno, string $competencia): array
+    public function graficoAutoestima(string $fk_uuid_aluno, string $competencia, bool $media): array
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -135,13 +147,19 @@ class FeedbackSemanalService extends MVCService
             ->whereMonth('created_at', $mes)
             ->get();
 
+        if ($media) {
+            return $grafico[] = [
+                'media' => $data->pluck('autoestima')->sum() / count($data->pluck('competencia')),
+            ];
+        }
+
         return $grafico[] = [
             'label' => $data->pluck('competencia'),
             'data' => $data->pluck('autoestima'),
         ];
     }
 
-    public function graficoDisposicao(string $fk_uuid_aluno, string $competencia): array
+    public function graficoDisposicao(string $fk_uuid_aluno, string $competencia, bool $media): array
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -152,13 +170,19 @@ class FeedbackSemanalService extends MVCService
             ->whereMonth('created_at', $mes)
             ->get();
 
+        if ($media) {
+            return $grafico[] = [
+                'media' => $data->pluck('disposicao')->sum() / count($data->pluck('competencia')),
+            ];
+        }
+
         return $grafico[] = [
             'label' => $data->pluck('competencia'),
             'data' => $data->pluck('disposicao'),
         ];
     }
 
-    public function graficoIngestaoAgua(string $fk_uuid_aluno, string $competencia): array
+    public function graficoIngestaoAgua(string $fk_uuid_aluno, string $competencia, bool $media): array
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -169,13 +193,19 @@ class FeedbackSemanalService extends MVCService
             ->whereMonth('created_at', $mes)
             ->get();
 
+        if ($media) {
+            return $grafico[] = [
+                'media' => $data->pluck('ingestao_agua')->sum() / count($data->pluck('competencia')),
+            ];
+        }
+
         return $grafico[] = [
             'label' => $data->pluck('competencia'),
             'data' => $data->pluck('ingestao_agua'),
         ];
     }
 
-    public function graficoIngestaoBebidaAlcoolica(string $fk_uuid_aluno, string $competencia): array
+    public function graficoIngestaoBebidaAlcoolica(string $fk_uuid_aluno, string $competencia, bool $media): array
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -186,13 +216,19 @@ class FeedbackSemanalService extends MVCService
             ->whereMonth('created_at', $mes)
             ->get();
 
+        if ($media) {
+            return $grafico[] = [
+                'media' => $data->pluck('ingestao_bebida_alcoolica')->sum() / count($data->pluck('competencia')),
+            ];
+        }
+
         return $grafico[] = [
             'label' => $data->pluck('competencia'),
             'data' => $data->pluck('ingestao_bebida_alcoolica'),
         ];
     }
 
-    public function graficoIntensidadeTreino(string $fk_uuid_aluno, string $competencia): array
+    public function graficoIntensidadeTreino(string $fk_uuid_aluno, string $competencia, bool $media): array
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -203,13 +239,19 @@ class FeedbackSemanalService extends MVCService
             ->whereMonth('created_at', $mes)
             ->get();
 
+        if ($media) {
+            return $grafico[] = [
+                'media' => $data->pluck('intensidade_treino')->sum() / count($data->pluck('competencia')),
+            ];
+        }
+
         return $grafico[] = [
             'label' => $data->pluck('competencia'),
             'data' => $data->pluck('intensidade_treino'),
         ];
     }
 
-    public function graficoOrganizacao(string $fk_uuid_aluno, string $competencia): array
+    public function graficoOrganizacao(string $fk_uuid_aluno, string $competencia, bool $media): array
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -220,13 +262,19 @@ class FeedbackSemanalService extends MVCService
             ->whereMonth('created_at', $mes)
             ->get();
 
+        if ($media) {
+            return $grafico[] = [
+                'media' => $data->pluck('organizacao')->sum() / count($data->pluck('competencia')),
+            ];
+        }
+
         return $grafico[] = [
             'label' => $data->pluck('competencia'),
             'data' => $data->pluck('organizacao'),
         ];
     }
 
-    public function graficoTabagismo(string $fk_uuid_aluno, string $competencia): array
+    public function graficoTabagismo(string $fk_uuid_aluno, string $competencia, bool $media): array
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -237,13 +285,19 @@ class FeedbackSemanalService extends MVCService
             ->whereMonth('created_at', $mes)
             ->get();
 
+        if ($media) {
+            return $grafico[] = [
+                'media' => $data->pluck('tabagismo')->sum() / count($data->pluck('competencia')),
+            ];
+        }
+
         return $grafico[] = [
             'label' => $data->pluck('competencia'),
             'data' => $data->pluck('tabagismo'),
         ];
     }
 
-    public function graficoDores(string $fk_uuid_aluno, string $competencia): array
+    public function graficoDores(string $fk_uuid_aluno, string $competencia, bool $media): array
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -255,6 +309,12 @@ class FeedbackSemanalService extends MVCService
             ->whereMonth('feedback_semanal.created_at', $mes)
             ->get();
 
+        if ($media) {
+            return $grafico[] = [
+                'media' => $data->pluck('ausencia_dor')->sum() / count($data->pluck('competencia')),
+            ];
+        }
+
         return $grafico[] = [
             'label'     => $data->pluck('competencia'),
             'data'      => $data->pluck('ausencia_dor'),
@@ -262,21 +322,27 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    public function graficoDoencas(string $fk_uuid_aluno, string $competencia): array
+    public function graficoDoencas(string $fk_uuid_aluno, string $competencia, bool $media): array
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
 
-        $data = $this->model->selectRaw("DATE_FORMAT(feedback_semanal.created_at, '%d/%m/%Y') as competencia, ausencia_dor, doencas.descricao as doencas")
+        $data = $this->model->selectRaw("DATE_FORMAT(feedback_semanal.created_at, '%d/%m/%Y') as competencia, doenca, doencas.descricao as doencas")
             ->join('doencas', 'doencas.id', 'feedback_semanal.fk_id_doenca')
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('feedback_semanal.created_at', $ano)
             ->whereMonth('feedback_semanal.created_at', $mes)
             ->get();
 
+        if ($media) {
+            return $grafico[] = [
+                'media' => $data->pluck('doenca')->sum() / count($data->pluck('competencia')),
+            ];
+        }
+
         return $grafico[] = [
             'label'     => $data->pluck('competencia'),
-            'data'      => $data->pluck('ausencia_dor'),
+            'data'      => $data->pluck('doenca'),
             'descricao' => $data->pluck('doencas'),
         ];
     }

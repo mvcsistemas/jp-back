@@ -86,79 +86,79 @@ class FeedbackSemanalController extends MVCController
 
     }
 
-    public function graficoAlimentacao(string $fk_uuid_aluno, string $competencia): JsonResponse
+    public function graficoAlimentacao(string $fk_uuid_aluno, string $competencia, bool $media = false): JsonResponse
     {
-        $row = $this->service->graficoAlimentacao($fk_uuid_aluno, $competencia);
+        $row = $this->service->graficoAlimentacao($fk_uuid_aluno, $competencia, $media);
 
         return $this->responseBuilderRow($row, false);
     }
 
-    public function graficoFrequenciaMotivacao(string $fk_uuid_aluno, string $competencia): JsonResponse
+    public function graficoFrequenciaMotivacao(string $fk_uuid_aluno, string $competencia, bool $media = false): JsonResponse
     {
-        $row = $this->service->graficoFrequenciaMotivacao($fk_uuid_aluno, $competencia);
+        $row = $this->service->graficoFrequenciaMotivacao($fk_uuid_aluno, $competencia, $media);
 
         return $this->responseBuilderRow($row, false);
     }
 
-    public function graficoAutoestima(string $fk_uuid_aluno, string $competencia): JsonResponse
+    public function graficoAutoestima(string $fk_uuid_aluno, string $competencia, bool $media = false): JsonResponse
     {
-        $row = $this->service->graficoAutoestima($fk_uuid_aluno, $competencia);
+        $row = $this->service->graficoAutoestima($fk_uuid_aluno, $competencia, $media);
 
         return $this->responseBuilderRow($row, false);
     }
 
-    public function graficoDisposicao(string $fk_uuid_aluno, string $competencia): JsonResponse
+    public function graficoDisposicao(string $fk_uuid_aluno, string $competencia, bool $media = false): JsonResponse
     {
-        $row = $this->service->graficoDisposicao($fk_uuid_aluno, $competencia);
+        $row = $this->service->graficoDisposicao($fk_uuid_aluno, $competencia, $media);
 
         return $this->responseBuilderRow($row, false);
     }
 
-    public function graficoIngestaoAgua(string $fk_uuid_aluno, string $competencia): JsonResponse
+    public function graficoIngestaoAgua(string $fk_uuid_aluno, string $competencia, bool $media = false): JsonResponse
     {
-        $row = $this->service->graficoIngestaoAgua($fk_uuid_aluno, $competencia);
+        $row = $this->service->graficoIngestaoAgua($fk_uuid_aluno, $competencia, $media);
 
         return $this->responseBuilderRow($row, false);
     }
 
-    public function graficoIngestaoBebidaAlcoolica(string $fk_uuid_aluno, string $competencia): JsonResponse
+    public function graficoIngestaoBebidaAlcoolica(string $fk_uuid_aluno, string $competencia, bool $media = false): JsonResponse
     {
-        $row = $this->service->graficoIngestaoBebidaAlcoolica($fk_uuid_aluno, $competencia);
+        $row = $this->service->graficoIngestaoBebidaAlcoolica($fk_uuid_aluno, $competencia, $media);
 
         return $this->responseBuilderRow($row, false);
     }
 
-    public function graficoIntensidadeTreino(string $fk_uuid_aluno, string $competencia): JsonResponse
+    public function graficoIntensidadeTreino(string $fk_uuid_aluno, string $competencia, bool $media = false): JsonResponse
     {
-        $row = $this->service->graficoIntensidadeTreino($fk_uuid_aluno, $competencia);
+        $row = $this->service->graficoIntensidadeTreino($fk_uuid_aluno, $competencia, $media);
 
         return $this->responseBuilderRow($row, false);
     }
 
-    public function graficoOrganizacao(string $fk_uuid_aluno, string $competencia): JsonResponse
+    public function graficoOrganizacao(string $fk_uuid_aluno, string $competencia, bool $media = false): JsonResponse
     {
-        $row = $this->service->graficoOrganizacao($fk_uuid_aluno, $competencia);
+        $row = $this->service->graficoOrganizacao($fk_uuid_aluno, $competencia, $media);
 
         return $this->responseBuilderRow($row, false);
     }
 
-    public function graficoTabagismo(string $fk_uuid_aluno, string $competencia): JsonResponse
+    public function graficoTabagismo(string $fk_uuid_aluno, string $competencia, bool $media = false): JsonResponse
     {
-        $row = $this->service->graficoTabagismo($fk_uuid_aluno, $competencia);
+        $row = $this->service->graficoTabagismo($fk_uuid_aluno, $competencia, $media);
 
         return $this->responseBuilderRow($row, false);
     }
 
-    public function graficoDores(string $fk_uuid_aluno, string $competencia): JsonResponse
+    public function graficoDores(string $fk_uuid_aluno, string $competencia, bool $media = false): JsonResponse
     {
-        $row = $this->service->graficoDores($fk_uuid_aluno, $competencia);
+        $row = $this->service->graficoDores($fk_uuid_aluno, $competencia, $media);
 
         return $this->responseBuilderRow($row, false);
     }
 
-    public function graficoDoencas(string $fk_uuid_aluno, string $competencia): JsonResponse
+    public function graficoDoencas(string $fk_uuid_aluno, string $competencia, bool $media = false): JsonResponse
     {
-        $row = $this->service->graficoDoencas($fk_uuid_aluno, $competencia);
+        $row = $this->service->graficoDoencas($fk_uuid_aluno, $competencia, $media);
 
         return $this->responseBuilderRow($row, false);
     }

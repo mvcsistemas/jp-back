@@ -183,17 +183,17 @@ Route::group([
     ], function () {
         Route::get('sono-qualitativo/{competencia}', 'FeedbackSemanalController@graficoSonoQualitativo')->name('sono-qualitativo');
         Route::get('sono-quantitativo/{competencia}', 'FeedbackSemanalController@graficoSonoQuantitativo')->name('sono-quantitativo');
-        Route::get('alimentacao/{competencia}', 'FeedbackSemanalController@graficoAlimentacao')->name('alimentacao');
-        Route::get('frequencia-motivacao/{competencia}', 'FeedbackSemanalController@graficoFrequenciaMotivacao')->name('frequencia-motivacao');
-        Route::get('autoestima/{competencia}', 'FeedbackSemanalController@graficoAutoestima')->name('autoestima');
-        Route::get('disposicao/{competencia}', 'FeedbackSemanalController@graficoDisposicao')->name('disposicao');
-        Route::get('ingestao-agua/{competencia}', 'FeedbackSemanalController@graficoIngestaoAgua')->name('ingestao-agua');
-        Route::get('ingestao-bebida-alcoolica/{competencia}', 'FeedbackSemanalController@graficoIngestaoBebidaAlcoolica')->name('ingestao-bebida-alcoolica');
-        Route::get('intensidade-treino/{competencia}', 'FeedbackSemanalController@graficoIntensidadeTreino')->name('intensidade-treino');
-        Route::get('organizacao/{competencia}', 'FeedbackSemanalController@graficoOrganizacao')->name('organizacao');
-        Route::get('tabagismo/{competencia}', 'FeedbackSemanalController@graficoTabagismo')->name('tabagismo');
-        Route::get('dores/{competencia}', 'FeedbackSemanalController@graficoDores')->name('dores');
-        Route::get('doencas/{competencia}', 'FeedbackSemanalController@graficoDoencas')->name('doencas');
+        Route::get('alimentacao/{competencia}/{media?}', 'FeedbackSemanalController@graficoAlimentacao')->name('alimentacao');
+        Route::get('frequencia-motivacao/{competencia}/{media?}', 'FeedbackSemanalController@graficoFrequenciaMotivacao')->name('frequencia-motivacao');
+        Route::get('autoestima/{competencia}/{media?}', 'FeedbackSemanalController@graficoAutoestima')->name('autoestima');
+        Route::get('disposicao/{competencia}/{media?}', 'FeedbackSemanalController@graficoDisposicao')->name('disposicao');
+        Route::get('ingestao-agua/{competencia}/{media?}', 'FeedbackSemanalController@graficoIngestaoAgua')->name('ingestao-agua');
+        Route::get('ingestao-bebida-alcoolica/{competencia}/{media?}', 'FeedbackSemanalController@graficoIngestaoBebidaAlcoolica')->name('ingestao-bebida-alcoolica');
+        Route::get('intensidade-treino/{competencia}/{media?}', 'FeedbackSemanalController@graficoIntensidadeTreino')->name('intensidade-treino');
+        Route::get('organizacao/{competencia}/{media?}', 'FeedbackSemanalController@graficoOrganizacao')->name('organizacao');
+        Route::get('tabagismo/{competencia}/{media?}', 'FeedbackSemanalController@graficoTabagismo')->name('tabagismo');
+        Route::get('dores/{competencia}/{media?}', 'FeedbackSemanalController@graficoDores')->name('dores');
+        Route::get('doencas/{competencia}/{media?}', 'FeedbackSemanalController@graficoDoencas')->name('doencas');
         Route::get('sono-qualitativo/media/{competencia}', 'FeedbackSemanalController@graficoMediaSonoQualitativo')->name('sono-qualitativo-media');
         Route::get('sono-quantitativo/media/{competencia}', 'FeedbackSemanalController@graficoMediaSonoQuantitativo')->name('sono-quantitativo-media');
     });
