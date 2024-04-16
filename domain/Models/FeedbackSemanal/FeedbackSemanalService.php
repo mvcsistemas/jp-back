@@ -90,7 +90,7 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    public function graficoAlimentacao(string $fk_uuid_aluno, string $competencia, bool $media): array
+    public function graficoAlimentacao(string $fk_uuid_aluno, string $competencia, bool $media = false): array|string|null
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -102,9 +102,7 @@ class FeedbackSemanalService extends MVCService
             ->get();
 
         if ($media) {
-            return $grafico[] = [
-                'media' => $data->pluck('alimentacao')->sum() / count($data->pluck('competencia')),
-            ];
+            return number_format($data->pluck('alimentacao')->sum() / count($data->pluck('competencia')), 2, ',', '.');
         }
 
         return $grafico[] = [
@@ -113,7 +111,7 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    public function graficoFrequenciaMotivacao(string $fk_uuid_aluno, string $competencia, bool $media): array
+    public function graficoFrequenciaMotivacao(string $fk_uuid_aluno, string $competencia, bool $media = false): array|string|null
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -125,9 +123,7 @@ class FeedbackSemanalService extends MVCService
             ->get();
 
         if ($media) {
-            return $grafico[] = [
-                'media' => $data->pluck('frequencia_motivacao')->sum() / count($data->pluck('competencia')),
-            ];
+            return number_format($data->pluck('frequencia_motivacao')->sum() / count($data->pluck('competencia')), 2, ',', '.');
         }
 
         return $grafico[] = [
@@ -136,7 +132,7 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    public function graficoAutoestima(string $fk_uuid_aluno, string $competencia, bool $media): array
+    public function graficoAutoestima(string $fk_uuid_aluno, string $competencia, bool $media = false): array|string|null
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -148,9 +144,7 @@ class FeedbackSemanalService extends MVCService
             ->get();
 
         if ($media) {
-            return $grafico[] = [
-                'media' => $data->pluck('autoestima')->sum() / count($data->pluck('competencia')),
-            ];
+            return number_format($data->pluck('autoestima')->sum() / count($data->pluck('competencia')), 2, ',', '.');
         }
 
         return $grafico[] = [
@@ -159,7 +153,7 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    public function graficoDisposicao(string $fk_uuid_aluno, string $competencia, bool $media): array
+    public function graficoDisposicao(string $fk_uuid_aluno, string $competencia, bool $media = false): array|string|null
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -171,9 +165,7 @@ class FeedbackSemanalService extends MVCService
             ->get();
 
         if ($media) {
-            return $grafico[] = [
-                'media' => $data->pluck('disposicao')->sum() / count($data->pluck('competencia')),
-            ];
+            return number_format($data->pluck('disposicao')->sum() / count($data->pluck('competencia')), 2, ',', '.');
         }
 
         return $grafico[] = [
@@ -182,7 +174,7 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    public function graficoIngestaoAgua(string $fk_uuid_aluno, string $competencia, bool $media): array
+    public function graficoIngestaoAgua(string $fk_uuid_aluno, string $competencia, bool $media = false): array|string|null
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -194,9 +186,7 @@ class FeedbackSemanalService extends MVCService
             ->get();
 
         if ($media) {
-            return $grafico[] = [
-                'media' => $data->pluck('ingestao_agua')->sum() / count($data->pluck('competencia')),
-            ];
+            return number_format($data->pluck('ingestao_agua')->sum() / count($data->pluck('competencia')), 2, ',', '.');
         }
 
         return $grafico[] = [
@@ -205,7 +195,7 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    public function graficoIngestaoBebidaAlcoolica(string $fk_uuid_aluno, string $competencia, bool $media): array
+    public function graficoIngestaoBebidaAlcoolica(string $fk_uuid_aluno, string $competencia, bool $media = false): array|string|null
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -217,9 +207,7 @@ class FeedbackSemanalService extends MVCService
             ->get();
 
         if ($media) {
-            return $grafico[] = [
-                'media' => $data->pluck('ingestao_bebida_alcoolica')->sum() / count($data->pluck('competencia')),
-            ];
+            return number_format($data->pluck('ingestao_bebida_alcoolica')->sum() / count($data->pluck('competencia')), 2, ',', '.');
         }
 
         return $grafico[] = [
@@ -228,7 +216,7 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    public function graficoIntensidadeTreino(string $fk_uuid_aluno, string $competencia, bool $media): array
+    public function graficoIntensidadeTreino(string $fk_uuid_aluno, string $competencia, bool $media = false): array|string|null
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -240,9 +228,7 @@ class FeedbackSemanalService extends MVCService
             ->get();
 
         if ($media) {
-            return $grafico[] = [
-                'media' => $data->pluck('intensidade_treino')->sum() / count($data->pluck('competencia')),
-            ];
+            return number_format($data->pluck('intensidade_treino')->sum() / count($data->pluck('competencia')), 2, ',', '.');
         }
 
         return $grafico[] = [
@@ -251,7 +237,7 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    public function graficoOrganizacao(string $fk_uuid_aluno, string $competencia, bool $media): array
+    public function graficoOrganizacao(string $fk_uuid_aluno, string $competencia, bool $media = false): array|string|null
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -263,9 +249,7 @@ class FeedbackSemanalService extends MVCService
             ->get();
 
         if ($media) {
-            return $grafico[] = [
-                'media' => $data->pluck('organizacao')->sum() / count($data->pluck('competencia')),
-            ];
+            return number_format($data->pluck('organizacao')->sum() / count($data->pluck('competencia')), 2, ',', '.');
         }
 
         return $grafico[] = [
@@ -274,7 +258,7 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    public function graficoTabagismo(string $fk_uuid_aluno, string $competencia, bool $media): array
+    public function graficoTabagismo(string $fk_uuid_aluno, string $competencia, bool $media = false): array|string|null
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -286,9 +270,7 @@ class FeedbackSemanalService extends MVCService
             ->get();
 
         if ($media) {
-            return $grafico[] = [
-                'media' => $data->pluck('tabagismo')->sum() / count($data->pluck('competencia')),
-            ];
+            return number_format($data->pluck('tabagismo')->sum() / count($data->pluck('competencia')), 2, ',', '.');
         }
 
         return $grafico[] = [
@@ -297,7 +279,7 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    public function graficoDores(string $fk_uuid_aluno, string $competencia, bool $media): array
+    public function graficoDores(string $fk_uuid_aluno, string $competencia, bool $media = false): array|string|null
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -310,9 +292,7 @@ class FeedbackSemanalService extends MVCService
             ->get();
 
         if ($media) {
-            return $grafico[] = [
-                'media' => $data->pluck('ausencia_dor')->sum() / count($data->pluck('competencia')),
-            ];
+            return number_format($data->pluck('ausencia_dor')->sum() / count($data->pluck('competencia')), 2, ',', '.');
         }
 
         return $grafico[] = [
@@ -322,7 +302,7 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    public function graficoDoencas(string $fk_uuid_aluno, string $competencia, bool $media): array
+    public function graficoDoencas(string $fk_uuid_aluno, string $competencia, bool $media = false): array|string|null
     {
         $aluno           = $this->getAluno($fk_uuid_aluno);
         list($ano, $mes) = explode('-', $competencia);
@@ -335,9 +315,7 @@ class FeedbackSemanalService extends MVCService
             ->get();
 
         if ($media) {
-            return $grafico[] = [
-                'media' => $data->pluck('doenca')->sum() / count($data->pluck('competencia')),
-            ];
+            return number_format($data->pluck('doenca')->sum() / count($data->pluck('competencia')), 2, ',', '.');
         }
 
         return $grafico[] = [
@@ -347,37 +325,51 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    public function graficoMediaSonoQualitativo(string $fk_uuid_aluno, string $competencia): array
+    public function graficoMediaSonoQualitativo(string $fk_uuid_aluno, string $competencia): string|null
     {
-        $aluno = $this->getAluno($fk_uuid_aluno);
+        $aluno           = $this->getAluno($fk_uuid_aluno);
+        list($ano, $mes) = explode('-', $competencia);
 
         $data = $this->model->selectRaw("SUM(sono_qualitativo) as media")
             ->where('fk_id_aluno', $aluno->id)
-            ->whereYear('feedback_semanal.created_at', $competencia)
+            ->whereYear('feedback_semanal.created_at', $ano)
             ->first();
 
-        $media = number_format($data->media / date('m'), 2, ',', '.');
-
-        return $grafico[] = [
-            'media' =>  $media,
-            'mes_referencia' =>  Carbon::now()->isoFormat('MMMM'),
-        ];
+        return number_format($data->media / date('m'), 2, ',', '.');
     }
 
-    public function graficoMediaSonoQuantitativo(string $fk_uuid_aluno, string $competencia): array
+    public function graficoMediaSonoQuantitativo(string $fk_uuid_aluno, string $competencia): string|null
     {
-        $aluno          = $this->getAluno($fk_uuid_aluno);
-        $data_inicio    = Carbon::now()->startOfYear();
-        $data_atual     = Carbon::now();
-        $diferenca_dias = $data_inicio->diffInDays($data_atual);
+        $aluno           = $this->getAluno($fk_uuid_aluno);
+        list($ano, $mes) = explode('-', $competencia);
+        $data_inicio     = Carbon::now()->startOfYear();
+        $data_atual      = Carbon::now();
+        $diferenca_dias  = $data_inicio->diffInDays($data_atual);
 
         $data = $this->model->selectRaw("SUM(sono_quantitativo) * 7 as qtd_horas")
             ->where('fk_id_aluno', $aluno->id)
-            ->whereYear('feedback_semanal.created_at', $competencia)
+            ->whereYear('feedback_semanal.created_at', $ano)
             ->first();
 
-        return $grafico[] = [
-            'media' =>  $data->qtd_horas / $diferenca_dias
+        return number_format($data->qtd_horas / $diferenca_dias, 2, ',', '.');
+    }
+
+    public function medias(string $fk_uuid_aluno, string $competencia): array
+    {
+        return $media[] = [
+            'alimentacao'               => $this->graficoAlimentacao($fk_uuid_aluno, $competencia, true),
+            'frequencia_motivacao'      => $this->graficoFrequenciaMotivacao($fk_uuid_aluno, $competencia, true),
+            'autoestima'                => $this->graficoAutoestima($fk_uuid_aluno, $competencia, true),
+            'disposicao'                => $this->graficoDisposicao($fk_uuid_aluno, $competencia, true),
+            'ingestaoAgua'              => $this->graficoIngestaoAgua($fk_uuid_aluno, $competencia, true),
+            'ingestaoBebidaAlcoolica'   => $this->graficoIngestaoBebidaAlcoolica($fk_uuid_aluno, $competencia, true),
+            'ingestaoIntensidadeTreino' => $this->graficoIntensidadeTreino($fk_uuid_aluno, $competencia, true),
+            'organizacao'               => $this->graficoOrganizacao($fk_uuid_aluno, $competencia, true),
+            'tabagismo'                 => $this->graficoTabagismo($fk_uuid_aluno, $competencia, true),
+            'dores'                     => $this->graficoDores($fk_uuid_aluno, $competencia, true),
+            'doencas'                   => $this->graficoDoencas($fk_uuid_aluno, $competencia, true),
+            'sono_qualitativo'          => $this->graficoMediaSonoQualitativo($fk_uuid_aluno, $competencia, true),
+            'sono_quantitativo'         => $this->graficoMediaSonoQuantitativo($fk_uuid_aluno, $competencia, true),
         ];
     }
 }

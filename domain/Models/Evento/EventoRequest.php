@@ -16,6 +16,9 @@ class EventoRequest extends MVCRequest
             'fk_uuid_aluno'            => '',
             'fk_uuid_status'           => '',
             'fk_uuid_atividade_fisica' => '',
+            'data_inicio'              => '',
+            'data_fim'                 => '',
+            'dias_semana'              => '',
             'todos'                    => 'required',
         ];
     }
