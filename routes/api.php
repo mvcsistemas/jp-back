@@ -82,6 +82,7 @@ Route::group([
         'as'        => 'evento.',
         'namespace' => 'Evento'
     ], function () {
+        Route::get('contador/{fk_uuid_aluno}/competencia/{competencia}', 'EventoController@contador');
         Route::apiResource('', 'EventoController')->parameters(['' => 'uuid']);
     });
 

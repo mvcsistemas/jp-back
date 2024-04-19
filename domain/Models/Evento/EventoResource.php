@@ -26,7 +26,8 @@ class EventoResource extends JsonResource
 
         $retorno = [
             'uuid'                     => $this->uuid,
-            'data'                     => $dataFormatada,
+            'data'                     => $this->data,
+            'data_aluno'               => $dataFormatada,
             'titulo'                   => $this->titulo,
             'fk_uuid_aluno'            => $this->fk_uuid_aluno,
             'fk_uuid_status'           => $this->fk_uuid_status,

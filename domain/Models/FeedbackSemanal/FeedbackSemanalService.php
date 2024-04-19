@@ -391,19 +391,19 @@ class FeedbackSemanalService extends MVCService
     public function medias(string $fk_uuid_aluno, string $competencia): array
     {
         return $media[] = [
-            'alimentacao'               => $this->graficoAlimentacao($fk_uuid_aluno, $competencia, true),
-            'frequencia_motivacao'      => $this->graficoFrequenciaMotivacao($fk_uuid_aluno, $competencia, true),
-            'autoestima'                => $this->graficoAutoestima($fk_uuid_aluno, $competencia, true),
-            'disposicao'                => $this->graficoDisposicao($fk_uuid_aluno, $competencia, true),
-            'ingestaoAgua'              => $this->graficoIngestaoAgua($fk_uuid_aluno, $competencia, true),
-            'ingestaoBebidaAlcoolica'   => $this->graficoIngestaoBebidaAlcoolica($fk_uuid_aluno, $competencia, true),
-            'ingestaoIntensidadeTreino' => $this->graficoIntensidadeTreino($fk_uuid_aluno, $competencia, true),
-            'organizacao'               => $this->graficoOrganizacao($fk_uuid_aluno, $competencia, true),
-            'tabagismo'                 => $this->graficoTabagismo($fk_uuid_aluno, $competencia, true),
-            'dores'                     => $this->graficoDores($fk_uuid_aluno, $competencia, true),
-            'doencas'                   => $this->graficoDoencas($fk_uuid_aluno, $competencia, true),
-            'sono_qualitativo'          => $this->graficoSonoQualitativo($fk_uuid_aluno, $competencia, true),
-            'sono_quantitativo'         => $this->graficoSonoQuantitativo($fk_uuid_aluno, $competencia, true),
+            'alimentacao'             => $this->graficoAlimentacao($fk_uuid_aluno, $competencia, true),
+            'frequencia_motivacao'    => $this->graficoFrequenciaMotivacao($fk_uuid_aluno, $competencia, true),
+            'autoestima'              => $this->graficoAutoestima($fk_uuid_aluno, $competencia, true),
+            'disposicao'              => $this->graficoDisposicao($fk_uuid_aluno, $competencia, true),
+            'ingestaoAgua'            => $this->graficoIngestaoAgua($fk_uuid_aluno, $competencia, true),
+            'ingestaoBebidaAlcoolica' => $this->graficoIngestaoBebidaAlcoolica($fk_uuid_aluno, $competencia, true),
+            'intensidadeTreino'       => $this->graficoIntensidadeTreino($fk_uuid_aluno, $competencia, true),
+            'organizacao'             => $this->graficoOrganizacao($fk_uuid_aluno, $competencia, true),
+            'tabagismo'               => $this->graficoTabagismo($fk_uuid_aluno, $competencia, true),
+            'dores'                   => $this->graficoDores($fk_uuid_aluno, $competencia, true),
+            'doencas'                 => $this->graficoDoencas($fk_uuid_aluno, $competencia, true),
+            'sono_qualitativo'        => $this->graficoSonoQualitativo($fk_uuid_aluno, $competencia, true),
+            'sono_quantitativo'       => $this->graficoSonoQuantitativo($fk_uuid_aluno, $competencia, true),
         ];
     }
 }

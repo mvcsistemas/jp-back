@@ -20,6 +20,7 @@ class EventoRequest extends MVCRequest
             'data_fim'                 => '',
             'dias_semana'              => '',
             'todos'                    => 'required',
+            'evento_aluno'             => '',
         ];
     }
 

@@ -35,7 +35,11 @@ class EventoController extends MVCController
 
     public function store(EventoRequest $request): JsonResponse
     {
-        $payload          = $this->transformData($request->validated());
+        $payload = $this->transformData($request->validated());
+
+        if (isset($payload['evento_aluno']) && $payload['fk_uuid_atividade_fisica'] != '') {
+            $payload['fk_id_status'] = '3';
+        }
 
         if (!isset($payload['data_inicio']) || $payload['data_inicio'] == '') {
             $row = $this->service->create($payload);
@@ -86,6 +90,10 @@ class EventoController extends MVCController
     {
         $data = $this->transformData($request->validated());
 
+        if (isset($data['evento_aluno']) && $data['fk_uuid_atividade_fisica'] != '') {
+            $data['fk_id_status'] = '3';
+        }
+
         $this->service->updateByUuid($uuid, $data);
 
         return $this->responseBuilderRow([], false, 204);
@@ -96,6 +104,13 @@ class EventoController extends MVCController
         $this->service->deleteByUuid($uuid);
 
         return $this->responseBuilderRow([], false, 204);
+    }
+
+    public function contador(string $fk_uuid_aluno, string $competencia): JsonResponse
+    {
+        $contador = $this->service->contador($fk_uuid_aluno, $competencia);
+
+        return $this->responseBuilderRow($contador, false);
     }
 
     public function transformData(array $data): array
