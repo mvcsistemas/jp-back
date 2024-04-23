@@ -359,35 +359,6 @@ class FeedbackSemanalService extends MVCService
         ];
     }
 
-    // public function graficoMediaSonoQualitativo(string $fk_uuid_aluno, string $competencia): string|null
-    // {
-    //     $aluno           = $this->getAluno($fk_uuid_aluno);
-    //     list($ano, $mes) = explode('-', $competencia);
-
-    //     $data = $this->model->selectRaw("SUM(sono_qualitativo) as media")
-    //         ->where('fk_id_aluno', $aluno->id)
-    //         ->whereYear('feedback_semanal.created_at', $ano)
-    //         ->first();
-
-    //     return number_format($data->media / date('m'), 2, ',', '.');
-    // }
-
-    // public function graficoMediaSonoQuantitativo(string $fk_uuid_aluno, string $competencia): string|null
-    // {
-    //     $aluno           = $this->getAluno($fk_uuid_aluno);
-    //     list($ano, $mes) = explode('-', $competencia);
-    //     $data_inicio     = Carbon::now()->startOfYear();
-    //     $data_atual      = Carbon::now();
-    //     $diferenca_dias  = $data_inicio->diffInDays($data_atual);
-
-    //     $data = $this->model->selectRaw("SUM(sono_quantitativo) * 7 as qtd_horas")
-    //         ->where('fk_id_aluno', $aluno->id)
-    //         ->whereYear('feedback_semanal.created_at', $ano)
-    //         ->first();
-
-    //     return number_format($data->qtd_horas / $diferenca_dias, 2, ',', '.');
-    // }
-
     public function medias(string $fk_uuid_aluno, string $competencia): array
     {
         return $media[] = [
@@ -405,5 +376,10 @@ class FeedbackSemanalService extends MVCService
             'sono_qualitativo'        => $this->graficoSonoQualitativo($fk_uuid_aluno, $competencia, true),
             'sono_quantitativo'       => $this->graficoSonoQuantitativo($fk_uuid_aluno, $competencia, true),
         ];
+    }
+
+    public function retornaIdFeedback(string $uuid): int|null
+    {
+        return $this->model->findByuuid($uuid)->id;
     }
 }

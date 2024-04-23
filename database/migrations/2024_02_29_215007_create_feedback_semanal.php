@@ -18,9 +18,6 @@ return new class extends Migration
             $table->string('sono_quantitativo_obs')->nullable();
             $table->smallInteger('sono_qualitativo');
             $table->string('sono_qualitativo_obs')->nullable();
-            $table->smallInteger('ausencia_dor');
-            $table->foreignId('fk_id_dor')->references('id')->on('dores');
-            $table->string('ausencia_dor_obs')->nullable();
             $table->smallInteger('alimentacao');
             $table->string('alimentacao_obs')->nullable();
             $table->smallInteger('doenca');

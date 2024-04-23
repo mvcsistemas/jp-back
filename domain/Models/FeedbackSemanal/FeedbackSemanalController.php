@@ -5,6 +5,7 @@ namespace MVC\Models\FeedbackSemanal;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use MVC\Base\MVCController;
+use MVC\Models\DoresFeedback\DoresFeedback;
 
 class FeedbackSemanalController extends MVCController
 {
@@ -34,24 +35,33 @@ class FeedbackSemanalController extends MVCController
 
     public function store(FeedbackSemanalRequest $request): JsonResponse
     {
-        $data = $this->transformData($request->validated());
+        $data          = $this->transformData($request->validated());
+        $row           = $this->service->create($data);
+        $data['dores'] = $this->transformDataDores($data['dores'], $row->id);
 
-        $row = $this->service->create($data);
+        $this->insereDores($data['dores']);
 
         return $this->responseBuilderRow($row, true, 201);
     }
 
     public function update($uuid, FeedbackSemanalRequest $request): JsonResponse
     {
-        $data = $this->transformData($request->validated());
+        $data          = $this->transformData($request->validated());
+        $id_feedback   = $this->service->retornaIdFeedback($uuid);
+        $data['dores'] = $this->transformDataDores($data['dores'], $id_feedback);
 
         $this->service->updateByUuid($uuid, $data);
+        $this->insereDores($data['dores'], $id_feedback);
 
         return $this->responseBuilderRow([], false, 204);
     }
 
     public function destroy($uuid): JsonResponse
     {
+        $id_feedback = $this->service->retornaIdFeedback($uuid);
+
+        $this->deletaDores($id_feedback);
+
         $this->service->deleteByUuid($uuid);
 
         return $this->responseBuilderRow([], false, 204);
@@ -62,6 +72,23 @@ class FeedbackSemanalController extends MVCController
         $rows = $this->service->lookup($request->all());
 
         return $this->responseBuilderWithoutPagination($rows, false);
+    }
+
+    public function insereDores(array $dores, int $id_feedback = null): void
+    {
+        if ($id_feedback) {
+            $this->deletaDores($id_feedback);
+        }
+
+        foreach ($dores as $dor) {
+            DoresFeedback::create($dor);
+        }
+    }
+
+    public function deletaDores(int $id_feedback): bool
+    {
+        return DoresFeedback::where('fk_id_feedback', $id_feedback)
+            ->delete();
     }
 
     public function statusSemanal(string $fk_uuid_aluno): JsonResponse
@@ -83,7 +110,6 @@ class FeedbackSemanalController extends MVCController
         $row = $this->service->graficoSonoQuantitativo($fk_uuid_aluno, $competencia);
 
         return $this->responseBuilderRow($row, false);
-
     }
 
     public function graficoAlimentacao(string $fk_uuid_aluno, string $competencia): JsonResponse
@@ -177,11 +203,28 @@ class FeedbackSemanalController extends MVCController
         return $this->responseBuilderRow($row, false);
     }
 
+    public function transformDataDores(array $data, int $id_feedback): array
+    {
+        $payload = [];
+
+        foreach ($data as $item) {
+            $item['fk_id_dor'] = returnUuidToId(
+                [
+                    'tabela' => 'dores', 'chave_atribuir' => 'fk_id_dor', 'campo_pesquisar' => 'id', 'uuid' => $item['fk_uuid_dor']
+                ]
+            );
+
+            $item['fk_id_feedback'] = $id_feedback;
+            $payload[]              = $item;
+        }
+
+        return $payload;
+    }
+
     public function transformData(array $data): array
     {
         return transformUuidToId($data, [
             ['tabela' => 'users', 'chave_atribuir' => 'fk_id_aluno', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_aluno']],
-            ['tabela' => 'dores', 'chave_atribuir' => 'fk_id_dor', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_dor']],
             ['tabela' => 'doencas', 'chave_atribuir' => 'fk_id_doenca', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_doenca']]
         ]);
     }

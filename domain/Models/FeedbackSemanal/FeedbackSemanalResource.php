@@ -3,6 +3,7 @@
 namespace MVC\Models\FeedbackSemanal;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use MVC\Models\DoresFeedback\DoresFeedbackResource;
 
 class FeedbackSemanalResource extends JsonResource
 {
@@ -14,10 +15,6 @@ class FeedbackSemanalResource extends JsonResource
             'uuid'                          => $this->uuid,
             'alimentacao'                   => $this->alimentacao,
             'alimentacao_obs'               => $this->alimentacao_obs,
-            'ausencia_dor'                  => $this->ausencia_dor,
-            'descricao_dor'                 => $this->descricao_dor,
-            'fk_uuid_dor'                   => $this->fk_uuid_dor,
-            'ausencia_dor_obs'              => $this->ausencia_dor_obs,
             'autoestima'                    => $this->autoestima,
             'autoestima_obs'                => $this->autoestima_obs,
             'disposicao'                    => $this->disposicao,
@@ -43,6 +40,7 @@ class FeedbackSemanalResource extends JsonResource
             'tabagismo'                     => $this->tabagismo,
             'tabagismo_obs'                 => $this->tabagismo_obs,
             'fk_uuid_aluno'                 => $this->fk_uuid_aluno,
+            'dores'                         => DoresFeedbackResource::collection($this->dores),
         ];
     }
 }

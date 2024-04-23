@@ -14,9 +14,6 @@ class FeedbackSemanalRequest extends MVCRequest
             'uuid'                          => '',
             'alimentacao'                   => 'required',
             'alimentacao_obs'               => '',
-            'ausencia_dor'                  => 'required',
-            'fk_uuid_dor'                   => 'required',
-            'ausencia_dor_obs'              => '',
             'autoestima'                    => 'required',
             'autoestima_obs'                => '',
             'disposicao'                    => 'required',
@@ -40,7 +37,11 @@ class FeedbackSemanalRequest extends MVCRequest
             'sono_qualitativo_obs'          => '',
             'tabagismo'                     => 'required',
             'tabagismo_obs'                 => '',
-            'fk_uuid_aluno'                 => 'required'
+            'fk_uuid_aluno'                 => 'required',
+            'dores'                         => 'array|required',
+            'dores.*.ausencia_dor'          => 'required',
+            'dores.*.fk_uuid_dor'           => 'required',
+            'dores.*.ausencia_dor_obs'      => '',
         ];
 
         if (request()->method() == 'POST') {
@@ -56,8 +57,8 @@ class FeedbackSemanalRequest extends MVCRequest
             'alimentacao.required'               => 'O campo Alimentação user é obrigatório.',
             'atividade_fisica.required'          => 'O campo Atividade Física é obrigatório.',
             'fk_uuid_atividade_fisica.required'  => 'O campo Tipo de Atividade Física é obrigatório.',
-            'ausencia_dor.required'              => 'O campo Ausência Dor é obrigatório.',
-            'fk_uuid_dor.required'               => 'O campo Tipo de Dor é obrigatório.',
+            'dores.*.ausencia_dor.required'      => 'O campo Ausência Dor é obrigatório.',
+            'dores.*.fk_uuid_dor.required'       => 'O campo Tipo de Dor é obrigatório.',
             'autoestima.required'                => 'O campo Autoestima é obrigatório.',
             'disposicao.required'                => 'O campo Disposição é obrigatório.',
             'doenca.required'                    => 'O campo Doença é obrigatório.',
