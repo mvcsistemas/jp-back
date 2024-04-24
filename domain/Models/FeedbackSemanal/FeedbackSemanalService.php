@@ -315,7 +315,8 @@ class FeedbackSemanalService extends MVCService
         list($ano, $mes) = explode('-', $competencia);
 
         $data = $this->model->selectRaw("DATE_FORMAT(feedback_semanal.created_at, '%d/%m/%Y') as competencia, ausencia_dor, dores.descricao as dores")
-            ->join('dores', 'dores.id', 'feedback_semanal.fk_id_dor')
+            ->join('dores_feedback', 'dores_feedback.fk_id_feedback', 'feedback_semanal.id')
+            ->join('dores', 'dores.id', 'dores_feedback.fk_id_dor')
             ->where('fk_id_aluno', $aluno->id)
             ->whereYear('feedback_semanal.created_at', $ano)
             ->whereMonth('feedback_semanal.created_at', $mes)
