@@ -34,7 +34,7 @@ class FeedbackSemanalService extends MVCService
     public function scoreSemanal(string $fk_uuid_aluno): array
     {
         $score = $this->model
-            ->selectRaw('(alimentacao + frequencia_motivacao + ausencia_dor + autoestima + disposicao + doenca + ingestao_agua + ingestao_bebida_alcoolica + intensidade_treino + organizacao + sono_qualitativo + tabagismo) as count')
+            ->selectRaw('(alimentacao + frequencia_motivacao + autoestima + disposicao + doenca + ingestao_agua + ingestao_bebida_alcoolica + intensidade_treino + organizacao + sono_qualitativo + tabagismo) as count')
             ->join('aluno', 'aluno.id', 'feedback_semanal.fk_id_aluno')
             ->where('aluno.uuid', $fk_uuid_aluno)
             ->whereBetween('feedback_semanal.created_at', [now()->startOfWeek(), now()->endOfWeek()])
