@@ -74,6 +74,7 @@ Route::group([
         'as'        => 'funcionario.',
         'namespace' => 'Funcionario'
     ], function () {
+        Route::get('lookup', 'FuncionarioController@lookup');
         Route::apiResource('', 'FuncionarioController')->parameters(['' => 'uuid']);
     });
 

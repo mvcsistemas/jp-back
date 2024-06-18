@@ -46,7 +46,7 @@ class Comunicados extends MVCModel
                 $query->orderBy($campo_ordenacao, $tipo_ordenacao);
             })
             ->when(!$tipo_ordenacao || !$campo_ordenacao, function ($query) {
-                $query->orderBy('comunicados.created_at');
+                $query->orderByDesc('comunicados.created_at');
             });
     }
 }
