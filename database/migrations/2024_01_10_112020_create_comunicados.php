@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id()->index();
             $table->uuid()->index();
             $table->string('descricao', 255);
-            $table->unsignedInteger('fk_id_aluno')->nullable();
-            $table->foreign('fk_id_aluno')->references('id')->on('aluno')->onDelete('cascade');
+            $table->foreignId('fk_id_remetente')->references('id')->on('users')->onDelete('cascade');
+            $table->foreignId('fk_id_destinatario')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

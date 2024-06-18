@@ -5,7 +5,8 @@ namespace MVC\Models\Comunicados;
 use Illuminate\Http\JsonResponse;
 use MVC\Base\MVCController;
 
-class ComunicadosController extends MVCController {
+class ComunicadosController extends MVCController
+{
 
     protected ComunicadosService $service;
     protected                    $resource;
@@ -55,10 +56,11 @@ class ComunicadosController extends MVCController {
         return $this->responseBuilderRow([], false, 204);
     }
 
-    public function transformData (array $data): array
+    public function transformData(array $data): array
     {
         return transformUuidToId($data, [
-            ['tabela' => 'aluno', 'chave_atribuir' => 'fk_id_aluno', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_aluno']]
+            ['tabela' => 'users', 'chave_atribuir' => 'fk_id_remetente', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_remetente']],
+            ['tabela' => 'users', 'chave_atribuir' => 'fk_id_destinatario', 'campo_pesquisar' => 'id', 'uuid' => $data['fk_uuid_destinatario']]
         ]);
     }
 }
