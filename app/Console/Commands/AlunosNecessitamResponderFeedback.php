@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
+use MVC\Models\Notificacao\Notificacao;
 use MVC\Models\Notificacao\NotificacaoService;
 
 class AlunosNecessitamResponderFeedback extends Command
@@ -26,7 +27,8 @@ class AlunosNecessitamResponderFeedback extends Command
      */
     public function handle()
     {
-        $notificacao = new NotificacaoService();
+        $model = new Notificacao();
+        $notificacao = new NotificacaoService($model);
         $notificacao->alunosNecessitamResponderFeedback();
     }
 }
