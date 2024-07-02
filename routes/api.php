@@ -198,4 +198,12 @@ Route::group([
         Route::get('doencas/{competencia}', 'FeedbackSemanalController@graficoDoencas')->name('doencas');
         Route::get('medias/{competencia}', 'FeedbackSemanalController@medias')->name('medias');
     });
+
+    Route::group([
+        'prefix'    => 'notificacao',
+        'as'        => 'notificacao.',
+        'namespace' => 'Notificacao'
+    ], function () {
+        Route::post('', 'NotificacaoController@store')->name('create');
+    });
 });
