@@ -46,6 +46,13 @@ Route::group([
     Route::post('criar-senha', 'FirstAccessController@createPassword')->name('create-password');
 });
 
+Route::group([
+    'prefix'    => 'notificacao',
+    'as'        => 'notificacao.',
+    'namespace' => 'Notificacao'
+], function () {
+    Route::post('', 'NotificacaoController@store')->name('create');
+});
 
 Route::group([
     'as'         => 'portal.',
@@ -197,13 +204,5 @@ Route::group([
         Route::get('dores/{competencia}', 'FeedbackSemanalController@graficoDores')->name('dores');
         Route::get('doencas/{competencia}', 'FeedbackSemanalController@graficoDoencas')->name('doencas');
         Route::get('medias/{competencia}', 'FeedbackSemanalController@medias')->name('medias');
-    });
-
-    Route::group([
-        'prefix'    => 'notificacao',
-        'as'        => 'notificacao.',
-        'namespace' => 'Notificacao'
-    ], function () {
-        Route::post('', 'NotificacaoController@store')->name('create');
     });
 });
