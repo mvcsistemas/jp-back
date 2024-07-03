@@ -30,10 +30,10 @@ class NotificacaoService extends MVCService
 
     public function periodoAbertoFeedback(): void
     {
-        $tokens = Aluno::select('notificacao_token')
+        $tokens = Aluno::select('token')
             ->join('notificacao_token', 'aluno.id', 'notificacao_token.fk_id_usuario')
             ->where('ativo', 1)
-            ->pluck('notificacao_token')
+            ->pluck('token')
             ->toArray();
 
         $this->notificacao($tokens, 'Feedback Semanal', 'O Feedback Semanal está aberto. Não deixe para depois, responda agora.');
@@ -41,10 +41,10 @@ class NotificacaoService extends MVCService
 
     public function ultimoDiaParaResponderFeedback(): void
     {
-        $tokens = Aluno::select('notificacao_token')
+        $tokens = Aluno::select('token')
             ->join('notificacao_token', 'aluno.id', 'notificacao_token.fk_id_usuario')
             ->where('ativo', 1)
-            ->pluck('notificacao_token')
+            ->pluck('token')
             ->toArray();
 
         $this->notificacao($tokens, 'Feedback Semanal', 'Hoje é o último dia para responder o feedback. Não perca, responda agora.');
@@ -54,11 +54,11 @@ class NotificacaoService extends MVCService
     {
         $alunosQueResponderam = FeedbackSemanal::whereBetween('created_at', [now()->startOfWeek(), now()->endOfWeek()])->pluck('fk_id_aluno');
 
-        $tokens = Aluno::select('notificacao_token')
+        $tokens = Aluno::select('token')
             ->join('notificacao_token', 'aluno.id', 'notificacao_token.fk_id_usuario')
             ->where('ativo', 1)
             ->whereNotIn('aluno.id', $alunosQueResponderam)
-            ->pluck('notificacao_token')
+            ->pluck('token')
             ->toArray();
 
         $this->notificacao($tokens, 'Feedback Semanal', 'Seu feedback semanal ainda está pendente.');
@@ -66,12 +66,12 @@ class NotificacaoService extends MVCService
 
     public function alunosComTreinoFuturo(): void
     {
-        $tokens = Aluno::select('notificacao_token')
+        $tokens = Aluno::select('token')
             ->join('evento', 'aluno.id', 'evento.fk_id_aluno')
             ->join('notificacao_token', 'aluno.id', 'notificacao_token.fk_id_usuario')
             ->where('fk_id_status', 3)
             ->whereDate('evento.data', date('Y-m-d'))
-            ->pluck('notificacao_token')
+            ->pluck('token')
             ->toArray();
 
         $this->notificacao($tokens, 'Lembrete', 'Há um treino te esperando hoje!');
