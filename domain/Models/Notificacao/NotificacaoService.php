@@ -17,6 +17,11 @@ class NotificacaoService extends MVCService
         $this->model = $model;
     }
 
+    public function fisrtOrCreateToken(array $data): Notificacao
+    {
+        return $this->model->firstOrCreate(['token' => $data['token']], $data);
+    }
+
     public function notificacao(array $tokens, string $title, string $body): void
     {
         $factory   = (new Factory)->withServiceAccount(config('firebase.projects.app.credentials'));

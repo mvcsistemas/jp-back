@@ -22,7 +22,7 @@ class NotificacaoController extends MVCController
     {
         $data = $this->transformData($request->validated());
 
-        $row = $this->service->create($data);
+        $row = $this->service->fisrtOrCreateToken($data);
 
         return $this->responseBuilderRow($row, true, 201);
     }
