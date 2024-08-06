@@ -12,7 +12,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule): void
     {
-        $schedule->command('queue:work  --stop-when-empty')->everyMinute()->withoutOverlapping();
+        $schedule->command('queue:work  --stop-when-empty')->everyThirtySeconds()->withoutOverlapping();
 
         // App:periodo-aberto-feedback - todas as sextas 00:00
         $schedule->command('app:periodo-aberto-feedback')
