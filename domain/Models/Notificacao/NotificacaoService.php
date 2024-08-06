@@ -37,7 +37,8 @@ class NotificacaoService extends MVCService
     {
         $tokens = Aluno::select('token')
             ->join('notificacao_token', 'aluno.id', 'notificacao_token.fk_id_usuario')
-            ->where('ativo', 1)
+            ->join('users', 'aluno.id', 'users.id')
+            ->where('users.ativo', 1)
             ->pluck('token')
             ->toArray();
 
@@ -48,7 +49,8 @@ class NotificacaoService extends MVCService
     {
         $tokens = Aluno::select('token')
             ->join('notificacao_token', 'aluno.id', 'notificacao_token.fk_id_usuario')
-            ->where('ativo', 1)
+            ->join('users', 'aluno.id', 'users.id')
+            ->where('users.ativo', 1)
             ->pluck('token')
             ->toArray();
 
@@ -61,7 +63,8 @@ class NotificacaoService extends MVCService
 
         $tokens = Aluno::select('token')
             ->join('notificacao_token', 'aluno.id', 'notificacao_token.fk_id_usuario')
-            ->where('ativo', 1)
+            ->join('users', 'aluno.id', 'users.id')
+            ->where('users.ativo', 1)
             ->whereNotIn('aluno.id', $alunosQueResponderam)
             ->pluck('token')
             ->toArray();
